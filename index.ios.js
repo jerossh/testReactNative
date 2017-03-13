@@ -7,12 +7,14 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
+  Image,
   StyleSheet,
   Text,
   View
 } from 'react-native';
 
 export default class justRN extends Component {
+  pic = {uri: 'https://cdn.pixabay.com/photo/2015/03/04/14/17/iphone-658842__340.jpg'};
   render() {
     return (
       <View style={styles.container}>
@@ -26,6 +28,9 @@ export default class justRN extends Component {
           Press Cmd+R to reload,{'\n'}
           Cmd+D or shake for dev menu
         </Text>
+        <Image source={this.pic} style={{width: 193, height: 110}} />
+        <Text>Jon_shen</Text>
+
       </View>
     );
   }
@@ -50,4 +55,5 @@ const styles = StyleSheet.create({
   },
 });
 
+// AppRegistry模块则是用来告知React Native哪一个组件被注册为整个应用的根容器
 AppRegistry.registerComponent('justRN', () => justRN);
