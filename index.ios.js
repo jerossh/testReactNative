@@ -14,10 +14,14 @@ import {
 } from 'react-native';
 
 export default class justRN extends Component {
-  pic = {uri: 'https://cdn.pixabay.com/photo/2015/03/04/14/17/iphone-658842__340.jpg'};
   render() {
     return (
       <View style={styles.container}>
+        <View style={styles.header} >
+          <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
+          <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
+          <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
+        </View>
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
@@ -28,7 +32,6 @@ export default class justRN extends Component {
           Press Cmd+R to reload,{'\n'}
           Cmd+D or shake for dev menu
         </Text>
-        <Image source={this.pic} style={{width: 193, height: 110}} />
         <Text>Jon_shen</Text>
 
       </View>
@@ -39,7 +42,15 @@ export default class justRN extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // flexDirection: 'row',
     justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  header: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
