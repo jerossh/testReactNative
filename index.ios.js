@@ -17,11 +17,6 @@ export default class justRN extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.header} >
-          <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
-          <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
-          <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
-        </View>
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
