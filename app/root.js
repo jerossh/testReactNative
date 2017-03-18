@@ -1,8 +1,9 @@
 'use strict';
 
 import React, { Component } from 'react'
-import Navigation from './app'
 import { View, Platform } from 'react-native'
+
+import Navigation from './app'
 
 export default class rootApp extends Component {
   render() {
