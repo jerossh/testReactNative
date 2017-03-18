@@ -8,12 +8,12 @@ export default class Navigation extends Component {
     
     render() {
         return Platform.OS === 'ios' ?(
-            <View style={{flex: 1, justifyContent: 'flex-end'}}>
+            <View style={styles.container}>
                 <Text style={styles.welcome}>
                 Welcome to React Native!
                 </Text>
                 <Text style={styles.instructions}>
-                To get started, edit index.android.js
+                To get started, edit index.ios.js
                 </Text>
                 <Text style={styles.instructions}>
                 Double tap R on your keyboard to reload,{'\n'}
@@ -21,7 +21,7 @@ export default class Navigation extends Component {
                 </Text>
             </View>
         ):(
-            <View style={{flex: 1, justifyContent: 'flex-end'}}>
+            <View style={{flex: 1, justifyContent: 'flex-start'}}>
                 <Text style={styles.welcome}>
                 Welcome to React Native!
                 </Text>
