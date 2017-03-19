@@ -1,58 +1,41 @@
 'use strict'
-
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Platform } from 'react-native';
-// import Wrapper from './component/Wrapper';
+import { Navigator, Platform } from 'react-native';
+import Wrapper from './component/Wrapper';
 
 export default class Navigation extends Component {
-    
+    /*
+     * initialRoute: 这个指定了默认的页面，也就是启动app之后会看到界面的第一屏
+     * configureScene: 页面之间跳转时候的动画
+     * renderScene: route里传递的name,component, navigator是一个Navigator的对象
+     *              Navigator 有 push pop jump...等方法，用于下一个页面转跳
+                    Wrapper 里面，我们可以直接拿到这个 props.navigator
+     * <Component {...route.params} navigator={navigator} /> 渲染这个传进来组件
+     */                
     render() {
+        let defaultName = 'FirstPageComponent';
         return Platform.OS === 'ios' ?(
-            <View style={styles.container}>
-                <Text style={styles.welcome}>
-                Welcome to React Native!
-                </Text>
-                <Text style={styles.instructions}>
-                To get started, edit index.ios.js
-                </Text>
-                <Text style={styles.instructions}>
-                Double tap R on your keyboard to reload,{'\n'}
-                Shake or press menu button for dev menu
-                </Text>
-            </View>
+            <Navigator
+              initialRoute={{ name: defaultName, component: Wrapper }}
+              configureScene={(route) => {
+                return Navigator.SceneConfigs.VerticalDownSwipeJump;
+              }}
+              renderScene={(route, navigator) => {
+                let Component = route.component;
+                return <Component {...route.params} navigator={navigator} />
+              }} />
         ):(
-            <View style={{flex: 1, justifyContent: 'flex-start'}}>
-                <Text style={styles.welcome}>
-                Welcome to React Native!
-                </Text>
-                <Text style={styles.instructions}>
-                To get started, edit index.android.js
-                </Text>
-                <Text style={styles.instructions}>
-                Double tap R on your keyboard to reload,{'\n'}
-                Shake or press menu button for dev menu
-                </Text>
-            </View>
+            <Navigator
+              initialRoute={{ name: defaultName, component: Wrapper }}
+              configureScene={(route) => {
+                return Navigator.SceneConfigs.VerticalDownSwipeJump;
+              }}
+              renderScene={(route, navigator) => {
+                let Component = route.component;
+                return <Component {...route.params} navigator={navigator} />
+              }} />
         )
 
     }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});

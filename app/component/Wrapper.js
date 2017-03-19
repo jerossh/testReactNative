@@ -1,23 +1,16 @@
 
 import React, { Component } from 'react'
-import { Navigator, View } from 'react-native'
+import { View } from 'react-native'
 import TabView from './TabView'
 
 export default class Wrapper extends Component {
+    // this.props.navigator 就是从  app.js 中继承过来 Navigator 对象
+
     render () {
         return (
-            <View style={{flex: 1, justifyContent: 'flex-end'}}>
-                <Text style={styles.welcome}>
-                Welcome to React Native!
-                </Text>
-                <Text style={styles.instructions}>
-                To get started, edit index.android.js
-                </Text>
-                <Text style={styles.instructions}>
-                Double tap R on your keyboard to reload,{'\n'}
-                Shake or press menu button for dev menu
-                </Text>
-            </View>
+          <View style={{flex: 1, justifyContent: 'flex-end'}}>
+              <TabView navigator={this.props.navigator}/>
+          </View>
         );
     }
 }
