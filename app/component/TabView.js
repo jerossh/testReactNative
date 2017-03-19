@@ -8,7 +8,7 @@ import {
   Animated,
   Image
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons//Ionicons';
 import TabNavigator from 'react-native-tab-navigator';
 import px2dp from '../util';
 let {width, height} = Dimensions.get('window'); // 本模块用于获取设备屏幕的宽高。
