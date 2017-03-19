@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { View, Text } from 'react-native'
 import TabView from './TabView'
 
 export default class Wrapper extends Component {

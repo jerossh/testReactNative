@@ -7,10 +7,10 @@ import { StyleSheet, View, Text, Platform } from 'react-native';
 export default class Navigation extends Component {
     
     render() {
-        return Platform.OS === 'ios' ?(
+        return (
             <View>
                 <Text style={styles.welcome}>
-                Welcome to React Native!
+                发现
                 </Text>
                 <Text style={styles.instructions}>
                 To get started, edit index.ios.js
@@ -20,19 +20,6 @@ export default class Navigation extends Component {
                 Shake or press menu button for dev menu
                 </Text>
              </View>   
-        ):(
-            <View>
-                <Text style={styles.welcome}>
-                Welcome to React Native!
-                </Text>
-                <Text style={styles.instructions}>
-                To get started, edit index.android.js
-                </Text>
-                <Text style={styles.instructions}>
-                Double tap R on your keyboard to reload,{'\n'}
-                Shake or press menu button for dev menu
-                </Text>
-            </View>     
         )
 
     }

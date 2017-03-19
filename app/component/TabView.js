@@ -8,7 +8,7 @@ import {
   Animated,
   Image
 } from 'react-native';
-import Icon from 'react-native-vector-icons//Ionicons';
+// import Icon from 'react-native-vector-icons/Ionicons';  // 神秘的 无法识别
 import TabNavigator from 'react-native-tab-navigator';
 import px2dp from '../util';
 let {width, height} = Dimensions.get('window'); // 本模块用于获取设备屏幕的宽高。
@@ -56,8 +56,8 @@ export default class TabView extends Component {
                     title={item[0]}
                     selected={this.state.currentTab === item[2]}
                     selectedTitleStyle={{color: "#3496f0"}}
-                    renderIcon={() => <Icon name={item[1]} size={px2dp(22)} color="#666" />}
-                    renderSelectedIcon={() => <Icon name={item[1].replace(/\-outline$/, "")} size={px2dp(22)} color="#3496f0" />}
+                    // renderIcon={() => <Icon name={item[1]} size={px2dp(22)} color="#666" />}
+                    // renderSelectedIcon={() => <Icon name={item[1].replace(/\-outline$/, "")} size={px2dp(22)} color="#3496f0" />}
                     onPress={() => this.setState({ currentTab: item[2] })}>
                     {item[3]}
                 </TabNavigator.Item>
