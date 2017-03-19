@@ -18,29 +18,26 @@ import Order from '../pages/Order'
 import My from '../pages/My'
 
 export default class TabView extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-        currentTab: 'HomePage',
-        hideTabBar: false
-    }
-    this.tabNames = [
-      ["外卖", "logo-google", "HomePage", <HomePage {...this.props}/>],
-      ["发现", "ios-compass-outline", "Discover", <Discover {...this.props}/>],
-      ["订单", "ios-list-box-outline", "Order", <Order {...this.props}/>],
-      ["我的", "ios-contact-outline", "My", <My {...this.props}/>]
-    ]
-    TabView.hideTabBar = TabView.hideTabBar.bind(this)
-    TabView.showTabBar = TabView.showTabBar.bind(this)
+
+  state = {
+      currentTab: 'HomePage',
+      hideTabBar: false
   }
-  static showTabBar(time){
+  tabNames = [
+    ["外卖", "logo-google", "HomePage", <HomePage {...this.props}/>],
+    ["发现", "ios-compass-outline", "Discover", <Discover {...this.props}/>],
+    ["订单", "ios-list-box-outline", "Order", <Order {...this.props}/>],
+    ["我的", "ios-contact-outline", "My", <My {...this.props}/>]
+  ]
+
+  showTabBar = (time) => {
     this.setState({hideTabBar: false})
   }
-  static hideTabBar(time){
+  hideTabBar = (time) => {
     this.setState({hideTabBar: true})
   }
 
-  render(){
+  render() {
     /*
      * hidesTabTouch: disable onPress opacity for Tab
      * tabBarStyle 自身样式

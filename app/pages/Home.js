@@ -1,7 +1,7 @@
 'use strict'
 
 import React, { Component } from 'react';
-import { StyleSheet, 
+import { 
   View, 
   Text, 
   BackAndroid, // 监听硬件的back键操作
