@@ -8,7 +8,7 @@ export default class Navigation extends Component {
     
     render() {
         return (
-            <View>
+            <View style={styles.container}>
                 <Text style={styles.welcome}>
                 订单
                 </Text>

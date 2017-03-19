@@ -8,9 +8,9 @@ export default class Navigation extends Component {
     
     render() {
         return (
-            <View>
+            <View style={styles.container}>
                 <Text style={styles.welcome}>
-               设置
+                我的
                 </Text>
                 <Text style={styles.instructions}>
                 To get started, edit index.ios.js

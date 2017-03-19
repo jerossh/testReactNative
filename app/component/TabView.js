@@ -9,7 +9,7 @@ import {
   Image
 } from 'react-native';
 // import Icon from 'react-native-vector-icons/Ionicons';  // 神秘的 无法识别
-import TabNavigator from 'react-native-tab-navigator';
+import TabNavigator from 'react-native-tab-navigator'; 
 import px2dp from '../util';
 let {width, height} = Dimensions.get('window'); // 本模块用于获取设备屏幕的宽高。
 import HomePage from '../pages/Home'
@@ -39,14 +39,22 @@ export default class TabView extends Component {
   static hideTabBar(time){
     this.setState({hideTabBar: true})
   }
+
   render(){
+    /*
+     * hidesTabTouch: disable onPress opacity for Tab
+     * tabBarStyle 自身样式
+    */
+
     return (
       <TabNavigator
         hidesTabTouch={true}
         tabBarStyle={[styles.tabbar,
-          (this.state.hideTabBar?styles.hide:{})
+          (this.state.hideTabBar?styles.hide:{}) // 还能是 数组的形式？
         ]}
-        sceneStyle={{ paddingBottom: styles.tabbar.height }}>
+        sceneStyle={{ paddingBottom: styles.tabbar.height }}
+       >
+
           {
             this.tabNames.map((item, i) => {
               return (
