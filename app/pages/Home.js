@@ -32,9 +32,9 @@ import Swiper from 'react-native-swiper';
 import SearchView from '../component/SearchView'
 import LbsModal from '../component/LbsModal'
 import TabView from '../component/TabView'
-// import Bz from '../component/Bz'
-// import DetailPage from './DetailPage'
-// import data from '../data'
+import Bz from '../component/Bz'
+import DetailPage from './DetailPage'
+import data from '../data'
 
 
 
@@ -393,7 +393,18 @@ export default class Navigation extends Component {
       </View>
     )
   }
-    
+    _renderBZ(){
+        return data.list.map((item, i) => {
+          item.onPress = () => {
+            this.props.navigator.push({
+                component: DetailPage,
+                args: {}
+            })
+          }
+          return (<Bz {...item} key={i}/>)
+        })
+      }
+      
     render() {
         return (
             <View style={{flex: 1, backgroundColor: "#f3f3f3"}}>
@@ -431,14 +442,17 @@ export default class Navigation extends Component {
                         {this._renderLtime()}
                     </View>
 
-                    <View style={styles.card}>
-                        {this._renderQuality()}
-                    </View>
 
                     <View style={styles.card}>
                         {this._renderGift()}
                     </View>
-                 
+
+                    <View style={styles.business}>
+                        <Text style={{color: "#666", paddingLeft: 16, paddingBottom: 6}}>{"推荐商家"}</Text>
+                            {this._renderBZ()}
+                        <ActivityIndicator style={{marginTop: 10}} animating={this.state.listLoading}/>
+                    </View>
+                            
                 </ScrollView>
 
                 {this._renderFixHeader()}

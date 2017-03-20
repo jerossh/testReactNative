@@ -17,7 +17,7 @@ import {
 // import Icon from 'react-native-vector-icons/Ionicons'
 import TabNavigator from 'react-native-tab-navigator'
 import px2dp from '../util'
-// import NavBar from '../component/NavBar'
+import NavBar from '../component/NavBar'
 import Button from '../component/Button'
 let {width, height} = Dimensions.get('window')
 const isAndroid = Platform.OS == "android"
@@ -81,7 +81,11 @@ export default class LbsModal extends Component {
         onRequestClose={() => {}}
         visible={this.props.modalVisible}
       >
-
+        <NavBar
+          title="选择收货地址"
+          leftIcon="ios-close"
+          leftPress={this.closeModal.bind(this)}
+        />
         <View style={styles.searchView}>
           <TextInput ref="search" style={styles.textInput} underlineColorAndroid="transparent" placeholder="请输入地址" placeholderTextColor="#666"/>
         </View>
