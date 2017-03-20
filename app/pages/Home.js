@@ -28,11 +28,22 @@ import SplashScreen from 'react-native-splash-screen';
 import Swiper from 'react-native-swiper';
 
 
+// 添加什么？
+import SearchView from '../component/SearchView'
+import LbsModal from '../component/LbsModal'
+import TabView from '../component/TabView'
+// import Bz from '../component/Bz'
+// import DetailPage from './DetailPage'
+// import data from '../data'
+
+
 
 const isIOS = Platform.OS == "ios";
 const { width, height } = Dimensions.get('window');
 const headH = px2dp(isIOS?140:120);
 const InputHeight = px2dp(28);
+
+
 
 export default class Navigation extends Component {
 
@@ -47,9 +58,9 @@ export default class Navigation extends Component {
     state = {
         location: "三里屯SOHO",
         scrollY: new Animated.Value(0), // 初始化
-        // searchView: new Animated.Value(0), 
+        searchView: new Animated.Value(0), 
         modalVisible: false,
-        // searchBtnShow: true,
+        searchBtnShow: true,
         listLoading: false,
         isRefreshing: false
     }
@@ -68,16 +79,47 @@ export default class Navigation extends Component {
       })
     }
 
-    openLbs(){
-       this.setState({modalVisible: true})
-    }
-
-
     _onRefresh(){
       this.setState({isRefreshing: true});
       setTimeout(() => {
         this.setState({isRefreshing: false});
       }, 2000)
+    }
+
+    openSearch(){
+        this._scrollY = this.state.scrollY._value
+        const { timing } = Animated
+        Animated.parallel(['scrollY', 'searchView'].map(property => {
+                return timing(this.state[property], {
+                toValue: property=='scrollY'?this.SEARCH_FIX_Y:1,
+                duration: 200
+            });
+        })).start(() => {
+          //this.setState({searchBtnShow: false})
+        })
+        TabView.hideTabBar()
+    }
+    closeSearch(){
+      if(this._scrollY>=this.SEARCH_FIX_Y){
+        this.state.scrollY.setValue(this._scrollY)
+      }else{
+        Animated.timing(this.state.scrollY, {
+            toValue: this._scrollY,
+            duration: 200
+        }).start()
+      }
+      //this.refs["search"].blur()
+      Animated.timing(this.state.searchView, {
+          toValue: 0,
+          duration: 200
+      }).start(() => this.setState({searchBtnShow: true}))
+      TabView.showTabBar(200)
+    }
+    openLbs(){
+      this.setState({modalVisible: true})
+    }
+    changeLocation(location){
+      this.setState({location})
     }
 
     // 渲染头部
@@ -137,6 +179,33 @@ export default class Navigation extends Component {
 
       </View>
     )}
+
+  _renderFixHeader(){
+    let showY = this.state.scrollY.interpolate({
+      inputRange: [0, this.SEARCH_BOX_Y, this.SEARCH_FIX_Y, this.SEARCH_FIX_Y],
+      outputRange: [-9999, -9999, 0, 0]
+    })
+    return (
+      <Animated.View style={[styles.header, {
+        position: "absolute",
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom:0,
+        height: px2dp(isIOS?64:44),
+        paddingTop: px2dp(isIOS?25:10),
+        transform: [
+          {translateY: showY}
+        ]
+      }]}>
+        <TouchableWithoutFeedback onPress={()=>{}}>
+          <View style={[styles.searchBtn, {backgroundColor: "#fff"}]}>
+            <Text style={{fontSize: 13, color:"#666", marginLeft: 5}}>{"输入商家，商品名称"}</Text>
+          </View>
+        </TouchableWithoutFeedback>
+      </Animated.View>
+    )
+  }
 
 
     _renderTypes(){
@@ -219,6 +288,56 @@ export default class Navigation extends Component {
       )
     })
 
+  }
+
+  _renderLtime(){
+    return (
+      <View>
+        <View style={{flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+          <View style={{flexDirection: "row", alignItems: "center"}}>
+            <Text style={{fontSize: px2dp(14), fontWeight: "bold"}}>限时抢购</Text>
+            <Text style={{fontSize: px2dp(11), color: "#aaa", marginLeft: 10}}>距离结束</Text>
+            <Text style={styles.time}>01</Text>
+            <Text style={{fontSize: px2dp(11), color: "#aaa"}}>:</Text>
+            <Text style={styles.time}>07</Text>
+            <Text style={{fontSize: px2dp(11), color: "#aaa"}}>:</Text>
+            <Text style={styles.time}>10</Text>
+          </View>
+          <TouchableOpacity>
+            <View style={{flexDirection: "row", alignItems: "center"}}>
+              <Text style={{fontSize: px2dp(12), color: "#aaa", marginRight: 3}}>更多</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+        <ScrollView
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
+          horizontal={true}
+          style={styles.lTimeScrollView}>
+          <View style={{flexDirection: "row", alignItems: "center", paddingTop: 15}}>
+            {
+              ["全素冒菜套餐", "荤素套餐", "培根餐", "酸汤水饺"].map((item, i) => {
+                let layout = (
+                  <View style={styles.lTimeList}>
+                    <Image source={LocalImg["sale"+i]} style={{height: px2dp(85), width: px2dp(85), resizeMode: 'cover'}}/>
+                    <Text style={{fontSize: px2dp(13), color: "#333", marginVertical: 5}}>{item}</Text>
+                    <View style={{flexDirection: "row", alignItems: "center"}}>
+                      <Text style={{fontSize: px2dp(14), fontWeight:"bold", color: "#ff6000", marginRight: 2}}>{"￥99"}</Text>
+                      <Text style={{fontSize: px2dp(12), color: "#aaa", textDecorationLine: "line-through"}}>{"￥29"}</Text>
+                    </View>
+                  </View>
+                )
+                return isIOS?(
+                  <TouchableHighlight key={i} style={{borderRadius: 4,marginRight: 10}} onPress={()=>{}}>{layout}</TouchableHighlight>
+                ):(
+                  <View key={i} style={{marginRight: 10}}><TouchableNativeFeedback onPress={()=>{}}>{layout}</TouchableNativeFeedback></View>
+                )
+              })
+            }
+          </View>
+        </ScrollView>
+      </View>
+    )
   }
 
   _renderQuality(){
@@ -309,16 +428,29 @@ export default class Navigation extends Component {
                     </View>
 
                     <View style={styles.card}>
+                        {this._renderLtime()}
+                    </View>
+
+                    <View style={styles.card}>
                         {this._renderQuality()}
                     </View>
 
                     <View style={styles.card}>
                         {this._renderGift()}
                     </View>
-
-
                  
                 </ScrollView>
+
+                {this._renderFixHeader()}
+                <SearchView show={this.state.searchView} scrollY={this.state.scrollY}/>
+                <LbsModal
+                  modalVisible={this.state.modalVisible}
+                  location={this.state.location}
+                  setLocation={this.changeLocation.bind(this)}
+                  closeModal={(()=>this.setState({modalVisible: false})).bind(this)}
+                />
+
+                
              </View>   
         )
     }
