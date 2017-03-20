@@ -22,8 +22,11 @@ import {
 } from 'react-native';
 // import Wrapper from './component/Wrapper';
 import px2dp from '../util';
-import Icon from 'react-native-vector-icons/Ionicons';
+import LocalImg from '../images'; // 还能以文件夹的形式导入？是 images.js
+// import Icon from 'react-native-vector-icons/MaterialIcons';
 import SplashScreen from 'react-native-splash-screen';
+import Swiper from 'react-native-swiper';
+
 
 
 const isIOS = Platform.OS == "ios";
@@ -47,7 +50,7 @@ export default class Navigation extends Component {
         // searchView: new Animated.Value(0), 
         modalVisible: false,
         // searchBtnShow: true,
-        // listLoading: false,
+        listLoading: false,
         isRefreshing: false
     }
 
@@ -96,9 +99,7 @@ export default class Navigation extends Component {
         <Animated.View style={[styles.lbsWeather, {opacity: lbsOpaticy}]}>
           <TouchableWithoutFeedback onPress={this.openLbs.bind(this)}>
             <View style={styles.lbs}>
-              <Icon name="ios-pin" size={px2dp(18)} color="#fff" />
               <Text style={{fontSize: px2dp(18), fontWeight: 'bold', color:"#fff", paddingHorizontal: 5}}>{this.state.location}</Text>
-              <Icon name="md-arrow-dropdown" size={px2dp(16)} color="#fff" />
             </View>
           </TouchableWithoutFeedback>
           <View style={styles.weather}>
@@ -116,7 +117,6 @@ export default class Navigation extends Component {
         }}>
           <TouchableWithoutFeedback onPress={()=>{}}>
             <View style={[styles.searchBtn, {backgroundColor: "#fff"}]}>
-              <Icon name="ios-search-outline" size={20} color="#666" />
               <Text style={{fontSize: 13, color:"#666", marginLeft: 5}}>{"输入商家，商品名称"}</Text>
             </View>
           </TouchableWithoutFeedback>
@@ -137,24 +137,186 @@ export default class Navigation extends Component {
 
       </View>
     )}
+
+
+    _renderTypes(){
+    const w = width/4, h = w*.6 + 20
+    let renderSwipeView = (types, n) => {
+      return (
+        <View style={styles.typesView}>
+          {
+            types.map((item, i) => {
+              let render = (
+                <View style={[{width: w, height: h}, styles.typesItem]}>
+                  <Image source={LocalImg['h'+(i+n)]} style={{width: w*.5, height: w*.5}}/>
+                  <Text style={{fontSize: px2dp(12), color:"#666"}}>{item}</Text>
+                </View>
+              )
+              return (
+                isIOS?(
+                  <TouchableHighlight style={{width: w, height: h}} key={i} onPress={() => {}}>{render}</TouchableHighlight>
+                ):(
+                  <TouchableNativeFeedback style={{width: w, height: h}} key={i} onPress={() => {}}>{render}</TouchableNativeFeedback>
+                )
+              )
+            })
+          }
+        </View>
+      )
+    }
+
+    return (
+      <Swiper
+        height={h*2.4}
+        paginationStyle={{ bottom: 10 }}
+        dotStyle={{backgroundColor:'rgba(0,0,0,.2)', width: 6, height: 6}}
+        activeDotStyle={{backgroundColor:'rgba(0,0,0,.5)', width: 6, height: 6}}>
+        {renderSwipeView(['美食','甜品饮品','商店超市','预定早餐','果蔬生鲜','新店特惠','准时达','高铁订餐'], 0)}
+        {renderSwipeView(['土豪推荐','鲜花蛋糕','汉堡炸鸡','日韩料理','麻辣烫','披萨意面','川湘菜','包子粥店'], 8)}
+      </Swiper>
+    )
+  }
+
+  _renderHot(){
+    return ["热卖套餐", "霸王餐", "年货到新家", "5折优惠餐"].map((n, i) => {
+      let styl = {
+        0: {
+          borderBottomWidth: 1,
+          borderBottomColor: "#f9f9f9",
+          borderRightWidth: 1,
+          borderRightColor: "#f9f9f9",
+        },
+        1: {
+          borderBottomWidth: 1,
+          borderBottomColor: "#f9f9f9"
+        },
+        2: {
+          borderRightWidth: 1,
+          borderRightColor: "#f9f9f9",
+        },
+        3: {}
+      }
+      let _render = (i) => {
+        return (
+            <View style={styles.recomWrap}>
+              <View>
+                <Text style={{fontSize: px2dp(14), color: "#333", marginBottom:5}}>{n}</Text>
+                <Text style={{fontSize: px2dp(12), color: "#bbb"}}>{n}</Text>
+              </View>
+              <Image source={LocalImg['hot'+i]} style={{width: 50, height: 50, resizeMode: "contain"}}/>
+            </View>
+        )
+      }
+
+      return isIOS?(
+        <View key={i} style={[styles.recomItem, styl[i], {backgroundColor: "#f5f5f5"}]}>
+          <TouchableHighlight style={{flex: 1}} onPress={() => {}}>{_render(i)}</TouchableHighlight>
+        </View>
+      ):(
+        <View key={i} style={[styles.recomItem, styl[i]]}>
+          <TouchableNativeFeedback style={{flex: 1, height: 70}}>{_render(i)}</TouchableNativeFeedback>
+        </View>
+      )
+    })
+
+  }
+
+  _renderQuality(){
+    return (
+      <View>
+        <View style={{flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+          <Text style={{fontSize: px2dp(14), fontWeight: "bold"}}>品质优选</Text>
+          <TouchableOpacity>
+            <View style={{flexDirection: "row", alignItems: "center"}}>
+              <Text style={{fontSize: px2dp(12), color: "#aaa", marginRight: 3}}>更多</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+        <View style={{flexDirection: "row", justifyContent:"space-between", alignItems: "center", flexWrap:"wrap", paddingTop: 15}}>
+          {
+            ["田老师红烧肉","必胜宅急送","嘉和一品","西贝莜面村","宏状元","汉拿山韩式石锅拌饭","U鼎冒菜","阿香米线"].map((item, i) => {
+                let size = px2dp((width-px2dp(120))/4)
+                let layout = (
+                  <View style={styles.lTimeList}>
+                    <Image source={LocalImg["nice"+i]} style={{height: size, width: size, resizeMode: 'cover'}}/>
+                    <Text numberOfLines={1} style={{fontSize: px2dp(12), width: size, color: "#333", marginVertical: 5}}>{item}</Text>
+                    <Text numberOfLines={1} style={styles.qtag}>{"大牌精选"}</Text>
+                  </View>
+                )
+                return isIOS?(
+                  <View key={i} style={{borderRadius: 4,marginRight: 10,paddingTop: i>3?30:0}}><TouchableHighlight onPress={()=>{}}>{layout}</TouchableHighlight></View>
+                ):(
+                  <View key={i} style={{marginRight: 10,paddingTop: i>3?30:0}}><TouchableNativeFeedback onPress={()=>{}}>{layout}</TouchableNativeFeedback></View>
+                )
+            })
+          }
+        </View>
+      </View>
+    )
+  }
+  _renderGift(){
+    return (
+      <View style={{flexDirection: "row"}}>
+        <View style={[styles.gift, {paddingRight: 16}]}>
+          <View>
+            <Text style={{fontWeight: "bold"}}>{"推荐有奖"}</Text>
+            <Text style={{fontSize: 12, color: "#aaa"}}>{"5元现金拿不停"}</Text>
+          </View>
+          <Image source={LocalImg.coupon0} style={{height: 50, width: 50, resizeMode: 'cover'}}/>
+        </View>
+        <View style={[styles.gift, {borderLeftColor: "#f5f5f5", borderLeftWidth: 1, paddingLeft: 16}]}>
+          <View>
+            <Text style={{fontWeight: "bold"}}>{"领券中心"}</Text>
+            <Text style={{fontSize: 12, color: "#aaa"}}>{"代金券免费领"}</Text>
+          </View>
+          <Image source={LocalImg.coupon1} style={{height: 50, width: 50, resizeMode: 'cover'}}/>
+        </View>
+      </View>
+    )
+  }
     
     render() {
         return (
-            <View style={styles.container}>
+            <View style={{flex: 1, backgroundColor: "#f3f3f3"}}>
                 <ScrollView
-                  style={styles.scrollView}
-                  onScroll={Animated.event([{nativeEvent: {contentOffset: {y: this.state.scrollY}}}])}
-                  scrollEventThrottle={16}
-                  refreshControl={
-                    <RefreshControl
-                      refreshing={this.state.isRefreshing}
-                      onRefresh={this._onRefresh.bind(this)}
-                      colors={['#ddd', '#0398ff']}
-                      progressBackgroundColor="#ff0"
-                    />
-                  }
-                >
+                    style={styles.scrollView}
+                    onScroll={Animated.event(
+                      [{nativeEvent: {contentOffset: {y: this.state.scrollY}}}]
+                    )}
+                    scrollEventThrottle={16}
+                    refreshControl={
+                      <RefreshControl
+                        refreshing={this.state.isRefreshing}
+                        onRefresh={this._onRefresh.bind(this)}
+                        colors={['#ddd', '#0398ff']}
+                        progressBackgroundColor="#ffffff"
+                      />
+                    }
+                  >
                     {this._renderHeader()}
+
+                    <View style={{backgroundColor: "#fff", paddingBottom: 10}}>
+                      {this._renderTypes()}
+                      <TouchableOpacity>
+                        <View style={{height: px2dp(90), paddingHorizontal: 10}}>
+                          <Image source={LocalImg.ad1} style={{height: px2dp(90), width: width-20, resizeMode: 'cover'}}/>
+                        </View>
+                      </TouchableOpacity>
+                    </View>
+
+                    <View style={styles.recom}>
+                        {this._renderHot()}
+                    </View>
+
+                    <View style={styles.card}>
+                        {this._renderQuality()}
+                    </View>
+
+                    <View style={styles.card}>
+                        {this._renderGift()}
+                    </View>
+
+
                  
                 </ScrollView>
              </View>   
