@@ -24,7 +24,7 @@ export default class TabView extends Component {
       hideTabBar: false
   }
   tabNames = [
-    ["外卖", "logo-google", "HomePage", <HomePage {...this.props}/>],
+    ["主页", "logo-google", "HomePage", <HomePage {...this.props}/>],
     ["发现", "ios-compass-outline", "Discover", <Discover {...this.props}/>],
     ["订单", "ios-list-box-outline", "Order", <Order {...this.props}/>],
     ["我的", "ios-contact-outline", "My", <My {...this.props}/>]
