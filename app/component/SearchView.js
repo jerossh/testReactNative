@@ -18,10 +18,10 @@ export default class SearchView extends Component {
       super(props)
   }
   render(){
-    let { show } = this.props
+    let { show, closeSearch } = this.props;
     return (
       <Animated.View style={[styles.wrap, {
-        opacity: show,
+        opacity: show, // show === new Animated.Value(0)
         transform: [{
           translateY: show.interpolate({
             inputRange: [0, 1],
@@ -29,38 +29,39 @@ export default class SearchView extends Component {
           })
         }]
       }]}>
-      <ScrollView style={styles.scrollView}>
-        <View style={styles.head}>
-          <Text style={{fontSize: px2dp(13), color: "#333"}}>{"历史搜索"}</Text>
-          <TouchableOpacity>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.queryList}>
-          {["小恒水饺", "贡茶", "麻辣小龙虾", "油焖大虾", "龙虾", "黄焖鸡"].map((item, i) => {
-            return (
-              <View key={i} style={{marginRight: 12,marginBottom:12}}>
-                <TouchableOpacity>
-                  <Text style={styles.queryItem}>{item}</Text>
-                </TouchableOpacity>
-              </View>
-            )
-          })}
-        </View>
-        <View style={styles.head}>
-          <Text style={{fontSize: px2dp(13), color: "#333"}}>{"热门搜索"}</Text>
-        </View>
-        <View style={styles.queryList}>
-          {["贡茶", "大排档", "第一大排档", "果麦", "星巴克", "周黑鸭"].map((item, i) => {
-            return (
-              <View key={i} style={{marginRight: 12,marginBottom:12}}>
-                <TouchableOpacity>
-                  <Text style={styles.queryItem}>{item}</Text>
-                </TouchableOpacity>
-              </View>
-            )
-          })}
-        </View>
-      </ScrollView>
+        <ScrollView style={styles.scrollView}>
+          <View style={styles.head}>
+            <Text style={{fontSize: px2dp(13), color: "#333"}}>{"历史搜索"}</Text>
+            <TouchableOpacity onPress={closeSearch}>
+              <Text>点击关闭</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.queryList}>
+            {["小恒水饺", "贡茶", "麻辣小龙虾", "油焖大虾", "龙虾", "黄焖鸡"].map((item, i) => {
+              return (
+                <View key={i} style={{marginRight: 12,marginBottom:12}}>
+                  <TouchableOpacity>
+                    <Text style={styles.queryItem}>{item}</Text>
+                  </TouchableOpacity>
+                </View>
+              )
+            })}
+          </View>
+          <View style={styles.head}>
+            <Text style={{fontSize: px2dp(13), color: "#333"}}>{"热门搜索"}</Text>
+          </View>
+          <View style={styles.queryList}>
+            {["贡茶", "大排档", "第一大排档", "果麦", "星巴克", "周黑鸭"].map((item, i) => {
+              return (
+                <View key={i} style={{marginRight: 12,marginBottom:12}}>
+                  <TouchableOpacity>
+                    <Text style={styles.queryItem}>{item}</Text>
+                  </TouchableOpacity>
+                </View>
+              )
+            })}
+          </View>
+        </ScrollView>
 
       </Animated.View>
     )

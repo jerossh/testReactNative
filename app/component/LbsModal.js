@@ -95,9 +95,9 @@ export default class LbsModal extends Component {
           <View style={styles.address}>
             <Text>{this.props.location}</Text>
             <TouchableOpacity onPress={this.getLocation.bind(this)}>
-            <View style={{flexDirection: "row", alignItems: "center"}}>
-              <Text style={{color: "#0398ff", fontSize: px2dp(13), marginLeft: 5}}>{"重新定位"}</Text>
-            </View>
+              <View style={{flexDirection: "row", alignItems: "center"}}>
+                <Text style={{color: "#0398ff", fontSize: px2dp(13), marginLeft: 5}}>{"重新定位"}</Text>
+              </View>
             </TouchableOpacity>
           </View>
           <Text style={styles.title}>{"收货地址"}</Text>
