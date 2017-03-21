@@ -56,7 +56,7 @@ export default class NavBar extends Component{
           })
         } else {
           return (<View style={styles.btn}>
-            <Text>这是啥？</Text>
+            <Text>如果没有图标，应该也没办法关闭</Text>
           </View>)
         }
       } else if (pos === "right") {
