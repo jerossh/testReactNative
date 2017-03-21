@@ -29,12 +29,12 @@ import Swiper from 'react-native-swiper';
 
 
 // 添加什么？
-import SearchView from '../component/SearchView'
-import LbsModal from '../component/LbsModal'
-import TabView from '../component/TabView'
-import Bz from '../component/Bz'
-import DetailPage from './DetailPage'
-import data from '../data'
+import SearchView from '../component/SearchView';
+import LbsModal from '../component/LbsModal';
+import TabView from '../component/TabView';
+import Bz from '../component/Bz';
+import DetailPage from './DetailPage';
+import data from '../data';
 
 
 
@@ -59,7 +59,7 @@ export default class Navigation extends Component {
         location: "三里屯SOHO",
         scrollY: new Animated.Value(0), // 初始化
         searchView: new Animated.Value(0), 
-        modalVisible: false,
+        modalVisible: true,
         searchBtnShow: true,
         listLoading: false,
         isRefreshing: false
@@ -461,7 +461,7 @@ export default class Navigation extends Component {
                   modalVisible={this.state.modalVisible}
                   location={this.state.location}
                   setLocation={this.changeLocation.bind(this)}
-                  closeModal={(()=>this.setState({modalVisible: false})).bind(this)}
+                  closeModal={(()=> this.setState({modalVisible: false})).bind(this) }
                 />
 
                 

@@ -1,7 +1,3 @@
-/**
- * @author Lei
- * @repo https://github.com/stoneWeb/elm-react-native
- */
 'use strict';
 
 import React, {
@@ -31,40 +27,52 @@ export default class NavBar extends Component{
     }
     static topbarHeight = (Platform.OS === 'ios' ? 64 : 42)
     renderBtn(pos){
+      
       let render = (obj) => {
-        const { name, onPress } = obj
-        if(Platform.OS === 'android'){
+        const { name, onPress } = obj;
+        if (Platform.OS === 'android') {
           return (
-            <TouchableNativeFeedback onPress={onPress} style={styles.btn}>
-            </TouchableNativeFeedback>
+            // React.Children.only expected to receive a single React element child 这样的错误 
+            // TouchableNativeFeedback 需要一个子项
+            <TouchableNativeFeedback onPress={onPress} style={styles.btn} > 
+              <Text>关闭</Text>
+            </TouchableNativeFeedback> 
+            
           )
-        }else{
+        } else {
           return (
             <TouchableOpacity onPress={onPress} style={styles.btn}>
+              <Text>关闭</Text>
             </TouchableOpacity>
           )
         }
       }
-      if(pos == "left"){
-        if(this.props.leftIcon){
+      
+      if (pos === "left") {
+        if (this.props.leftIcon) {
           return render({
             name: this.props.leftIcon,
             onPress: this.props.leftPress
           })
-        }else{
-          return (<View style={styles.btn}></View>)
+        } else {
+          return (<View style={styles.btn}>
+            <Text>这是啥？</Text>
+          </View>)
         }
-      }else if(pos == "right"){
-        if(this.props.rightIcon){
+      } else if (pos === "right") {
+        if(this.props.rightIcon) {
           return render({
             name: this.props.rightIcon,
             onPress: this.props.rightPress
           })
-        }else{
-          return (<View style={styles.btn}></View>)
+        } else {
+          return (<View style={styles.btn}>
+            <Text>新增地址</Text>
+          </View>)
         }
       }
     }
+
     render(){
         return(
             <View style={[styles.topbar, this.props.style]}>

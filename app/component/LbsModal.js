@@ -86,6 +86,7 @@ export default class LbsModal extends Component {
           leftIcon="ios-close"
           leftPress={this.closeModal.bind(this)}
         />
+
         <View style={styles.searchView}>
           <TextInput ref="search" style={styles.textInput} underlineColorAndroid="transparent" placeholder="请输入地址" placeholderTextColor="#666"/>
         </View>
