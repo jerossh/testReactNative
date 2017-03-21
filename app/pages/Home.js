@@ -217,7 +217,7 @@ export default class Navigation extends Component {
             types.map((item, i) => {
               let render = (
                 <View style={[{width: w, height: h}, styles.typesItem]}>
-                  <Image source={LocalImg['h'+(i+n)]} style={{width: w*.5, height: w*.5}}/>
+                  <Image source={LocalImg['h'+(i + n)]} style={{width: w*.5, height: w*.5}}/>
                   <Text style={{fontSize: px2dp(12), color:"#666"}}>{item}</Text>
                 </View>
               )
