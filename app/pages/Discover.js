@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, Platform } from 'react-native';
 // import Wrapper from './component/Wrapper';
 
-export default class Navigation extends Component {
+export default class Discover extends Component {
     
     render() {
         return (
@@ -21,7 +21,6 @@ export default class Navigation extends Component {
                 </Text>
              </View>   
         )
-
     }
 }
 

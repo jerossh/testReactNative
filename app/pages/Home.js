@@ -61,6 +61,7 @@ export default class Navigation extends Component {
         location: "三里屯SOHO",
         scrollY: new Animated.Value(0), // 初始化
         searchView: new Animated.Value(0), 
+        fix: new Animated.Value(0), 
         modalVisible: false,
         searchBtnShow: true,
         listLoading: false,
@@ -90,11 +91,11 @@ export default class Navigation extends Component {
     }
 
     openSearch(){
-        this._scrollY = this.state.scrollY._value;
-        const { timing } = Animated
-        Animated.parallel(['scrollY', 'searchView'].map(property => {
+        this._scrollY = this.state.scrollY._value; // 缓存非固定头部的 滚动高度
+        const { timing } = Animated;
+        Animated.parallel(['scrollY',].map(property => { // scrollY, searchView 在哪里？
                 return timing(this.state[property], {
-                toValue: property === 'scrollY' ? this.SEARCH_FIX_Y : 0.7,
+                toValue: property === 'scrollY' ? this.SEARCH_FIX_Y : 1, // SEARCH_FIX_Y 固定时候的高度
                 duration: 200
             });
         })).start(() => {
@@ -130,8 +131,8 @@ export default class Navigation extends Component {
     // 渲染头部
   _renderHeader(){
     let searchY = this.state.scrollY.interpolate({
-      inputRange: [0, this.SEARCH_BOX_Y, this.SEARCH_FIX_Y, this.SEARCH_FIX_Y],
-      outputRange: [0, 0, this.SEARCH_DIFF_Y, this.SEARCH_DIFF_Y]
+      inputRange: [0, this.SEARCH_BOX_Y, this.SEARCH_FIX_Y, this.SEARCH_FIX_Y], // 四个阶段
+      outputRange: [0, 0, this.SEARCH_DIFF_Y, this.SEARCH_DIFF_Y] // 四种动画方式
     })
     let lbsOpaticy = this.state.scrollY.interpolate({ 
       inputRange: [0, this.SEARCH_BOX_Y], 
@@ -142,7 +143,7 @@ export default class Navigation extends Component {
       outputRange: [1, 1, 0] // 输出透明度
     })
     return (
-      <View style={styles.header}>
+      <View style={[styles.header]}>
         <Animated.View style={[styles.lbsWeather, {opacity: lbsOpaticy}]  /* 到达某个高度酒隐藏 */}>
           <TouchableWithoutFeedback onPress={this.openLbs.bind(this)}>
             <View style={styles.lbs}>
@@ -192,7 +193,7 @@ export default class Navigation extends Component {
     })
     return (
       <Animated.View style={[styles.header, {
-        position: "absolute",
+        position: "absolute", // 相对固定
         left: 0,
         right: 0,
         top: 0,
@@ -205,12 +206,17 @@ export default class Navigation extends Component {
       }]}>
  
           <View style={{flexDirection: "column"}}>
-             
-             <TextInput 
-                style={[styles.searchFixBtn, {fontSize: 13, color:"#666", paddingLeft: 5}]}
+             <Text 
+                style={[styles.searchFixBtn, styles.searchText, {lineHeight: 24}]}
+                onPress={this.openSearch.bind(this)}
+             >{"输入商家，商品名称"}</Text>
+             <TextInput
+                style={[styles.searchFixBtn, {fontSize: 13, color:"#666", paddingLeft: 5, opacity: 0}]}
                 placeholder={"输入商家，商品名称"}
                 onChangeText={()=>{}}
                 autoFocus={false}
+                underlineColorAndroid="transparent"
+                placeholderTextColor="#666"
               />
           </View>
       </Animated.View>
@@ -467,7 +473,6 @@ export default class Navigation extends Component {
                             
                 </ScrollView>
 
-                {this._renderFixHeader()}
                 <SearchView show={this.state.searchView} scrollY={this.state.scrollY} closeSearch={this.closeSearch.bind(this)} />
                 <LbsModal
                   modalVisible={this.state.modalVisible}
@@ -552,6 +557,15 @@ const styles = StyleSheet.create({
     borderRadius: px2dp(14),
     height: px2dp(28),
     backgroundColor: "#fff",
+    justifyContent: "center",
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 0, // 安卓版本默认有一块 padding
+  },
+  searchText: {
+    fontSize: 13, 
+    color:"#666", 
+    textAlign: "center", 
   },
   keywords: {
     marginTop: px2dp(14),
