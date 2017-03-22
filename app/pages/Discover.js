@@ -1,25 +1,49 @@
 'use strict'
 
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Platform } from 'react-native';
-// import Wrapper from './component/Wrapper';
+import { StyleSheet, 
+         View, 
+         ScrollView,
+         Text, 
+         Platform } from 'react-native';
+
+import Icon from 'react-native-vector-icons/Ionicons';  // 神秘的 无法识别
+import px2dp from '../util';
+
+const isIOS = Platform.OS === 'ios';
 
 export default class Discover extends Component {
-    
+    state = {
+      //
+    }
+
+
+    _renderHeader() {
+      return ( // 按照文档流所以这个药在最下方，才能覆盖最上面的
+        <View style={styles.header}>
+           <Text style={{color: 'white', fontSize: 14}}>头部渲染在这里</Text>
+        </View>
+      );
+    }
+    _qkZone() {
+      return (
+        <View style={styles.qkZone}>
+           <Text>四个图标</Text>
+        </View>
+      );
+    }
+
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.welcome}>
-                发现
-                </Text>
-                <Text style={styles.instructions}>
-                To get started, edit index.ios.js
-                </Text>
-                <Text style={styles.instructions}>
-                Double tap R on your keyboard to reload,{'\n'}
-                Shake or press menu button for dev menu
-                </Text>
-             </View>   
+              <ScrollView>
+                
+                <View style={{backgroundColor: '#fff'}}>
+                   {this._qkZone()}
+                </View>
+              </ScrollView>
+              {this._renderHeader()}
+            </View>   
         )
     }
 }
@@ -27,18 +51,29 @@ export default class Discover extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
     backgroundColor: '#F5FCFF',
+    position: 'relative'
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  header: {
+    position: "absolute", // 相对固定
+    left: 0,
+    right: 0,
+    top: 0,
+    // bottom:0, // 这个是全凭渲染
+    backgroundColor: 'red',
+    paddingHorizontal: 16,
+    paddingTop: isIOS ? 30 : 10
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  qkZone: {
+    paddingTop: px2dp(isIOS?60:40),
+    paddingBottom: 10,
+    flex: 1,
+    backgroundColor: "#fff",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: 'center'
+  }
+
 });

@@ -135,7 +135,7 @@ export default class Navigation extends Component {
       outputRange: [0, 0, this.SEARCH_DIFF_Y, this.SEARCH_DIFF_Y] // 四种动画方式
     })
     let lbsOpaticy = this.state.scrollY.interpolate({ 
-      inputRange: [0, this.SEARCH_BOX_Y], 
+      inputRange: [0, this.SEARCH_BOX_Y],
       outputRange: [1, 0]
     })
     let keyOpaticy = this.state.scrollY.interpolate({  // this.state.scrollY 是一个 动画值
@@ -207,7 +207,7 @@ export default class Navigation extends Component {
  
           <View style={{flexDirection: "column"}}>
              <Text 
-                style={[styles.searchFixBtn, styles.searchText, {lineHeight: 24}]}
+                style={[styles.searchFixBtn, styles.searchText, {lineHeight: 24, borderRadius: 14}]}
                 onPress={this.openSearch.bind(this)}
              >{"输入商家，商品名称"}</Text>
              <TextInput
@@ -431,7 +431,7 @@ export default class Navigation extends Component {
                     onScroll={Animated.event(
                       [{nativeEvent: {contentOffset: {y: this.state.scrollY}}}]
                     )}
-                    scrollEventThrottle={16}
+                    scrollEventThrottle={100}
                     refreshControl={
                       <RefreshControl
                         refreshing={this.state.isRefreshing}
@@ -472,7 +472,7 @@ export default class Navigation extends Component {
                     </View>
                             
                 </ScrollView>
-                {this._renderFixHeader}
+                {this._renderFixHeader()}
                 <SearchView show={this.state.searchView} scrollY={this.state.scrollY} closeSearch={this.closeSearch.bind(this)} />
                 <LbsModal
                   modalVisible={this.state.modalVisible}

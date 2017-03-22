@@ -8,12 +8,12 @@ import {
   Animated,
   Image
 } from 'react-native';
-// import Icon from 'react-native-vector-icons/Ionicons';  // 神秘的 无法识别
+import Icon from 'react-native-vector-icons/Ionicons';  // 神秘的 无法识别
 import TabNavigator from 'react-native-tab-navigator'; 
 import px2dp from '../util';
 let {width, height} = Dimensions.get('window'); // 本模块用于获取设备屏幕的宽高。
-import HomePage from '../pages/Home'
-import Discover from '../pages/Discover'
+import HomePage from '../pages/Discover'
+import Discover from '../pages/Home'
 import Order from '../pages/Order'
 import My from '../pages/My'
 
@@ -24,8 +24,8 @@ export default class TabView extends Component {
       hideTabBar: false
   }
   tabNames = [
-    ["主页", "logo-google", "HomePage", <HomePage {...this.props}/>],
-    ["发现", "ios-compass-outline", "Discover", <Discover {...this.props}/>],
+    ["菜鸟", "logo-google", "HomePage", <HomePage {...this.props}/>],
+    ["了么", "ios-compass-outline", "Discover", <Discover {...this.props}/>],
     ["订单", "ios-list-box-outline", "Order", <Order {...this.props}/>],
     ["我的", "ios-contact-outline", "My", <My {...this.props}/>]
   ]
