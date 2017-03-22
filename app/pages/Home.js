@@ -93,7 +93,7 @@ export default class Navigation extends Component {
     openSearch(){
         this._scrollY = this.state.scrollY._value; // 缓存非固定头部的 滚动高度
         const { timing } = Animated;
-        Animated.parallel(['scrollY',].map(property => { // scrollY, searchView 在哪里？
+        Animated.parallel(['scrollY', 'searchView'].map(property => { // scrollY, searchView 在哪里？
                 return timing(this.state[property], {
                 toValue: property === 'scrollY' ? this.SEARCH_FIX_Y : 1, // SEARCH_FIX_Y 固定时候的高度
                 duration: 200
@@ -472,7 +472,7 @@ export default class Navigation extends Component {
                     </View>
                             
                 </ScrollView>
-
+                {this._renderFixHeader}
                 <SearchView show={this.state.searchView} scrollY={this.state.scrollY} closeSearch={this.closeSearch.bind(this)} />
                 <LbsModal
                   modalVisible={this.state.modalVisible}
