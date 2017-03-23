@@ -16,28 +16,14 @@ export default class Navigation extends Component {
      */                
     render() {
         let defaultName = 'FirstPageComponent';
-        return Platform.OS === 'ios' ?(
+        return (
             <Navigator
               initialRoute={{ name: defaultName, component: Wrapper }}
-              configureScene={(route) => {
-                return Navigator.SceneConfigs.VerticalDownSwipeJump; // 转跳动画
-              }}
-              renderScene={(route, navigator) => {
-                let Component = route.component;
-                return <Component {...route.params} navigator={navigator} />
-              }} />
-        ):(
-            <Navigator
-              initialRoute={{ name: defaultName, component: Wrapper }}
-              configureScene={(route) => {
-                return Navigator.SceneConfigs.VerticalDownSwipeJump;
-              }}
               renderScene={(route, navigator) => {
                 let Component = route.component;
                 return <Component {...route.params} navigator={navigator} />
               }} />
         )
-
     }
 }
 

@@ -54,9 +54,9 @@ export default class Discover extends Component {
            {
              qk4.map((item, index) => {
                return (
-                 <TouchableWithoutFeedback>
+                 <TouchableWithoutFeedback key={index}>
                    <View style={{ alignItems: 'center'} /* 为什么可用 ？ */}>
-                      <Image source={LocalImg['article']} style={{width: w*.4, height: w*.4}} />
+                      <Icon name="ios-person" size={30} color="#4F8EF7" />
                       <Text style={{color: 'white', textAlign: 'center', fontSize: px2dp(13), paddingTop: 10}}>{item[0]}</Text>
                    </View>
                  </TouchableWithoutFeedback>
