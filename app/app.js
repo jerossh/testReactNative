@@ -20,7 +20,7 @@ export default class Navigation extends Component {
             <Navigator
               initialRoute={{ name: defaultName, component: Wrapper }}
               configureScene={(route) => {
-                return Navigator.SceneConfigs.VerticalDownSwipeJump;
+                return Navigator.SceneConfigs.VerticalDownSwipeJump; // 转跳动画
               }}
               renderScene={(route, navigator) => {
                 let Component = route.component;

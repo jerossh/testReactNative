@@ -59,8 +59,8 @@ export default class TabView extends Component {
                     key={i}
                     tabStyle={styles.tabStyle}
                     title={item[0]}
-                    selected={this.state.currentTab === item[2]}
-                    selectedTitleStyle={{color: "#3496f0"}}
+                    selected={this.state.currentTab === item[2] /* 当前页面 */}
+                    selectedTitleStyle={{color: "#3496f0", fontSize: px2dp(14)}}
                     // renderIcon={() => <Icon name={item[1]} size={px2dp(22)} color="#666" />}
                     // renderSelectedIcon={() => <Icon name={item[1].replace(/\-outline$/, "")} size={px2dp(22)} color="#3496f0" />}
                     onPress={() => this.setState({ currentTab: item[2] })}>
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
       height: px2dp(46),
       alignItems:'center',
       justifyContent: 'center',
-      backgroundColor: '#fff'
+      backgroundColor: '#fff',
     },
     hide: {
       transform: [

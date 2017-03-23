@@ -102,7 +102,7 @@ export default class Navigation extends Component {
           this.setState({searchBtnShow: false});
           // this.setState({modalVisible: true});
         })
-        // TabView.hideTabBar()
+        TabView.hideTabBar()
     }
     closeSearch(){
       // this.setState({modalVisible: true});
@@ -119,7 +119,7 @@ export default class Navigation extends Component {
           toValue: 0,
           duration: 200
       }).start(() => this.setState({searchBtnShow: true}))
-      // TabView.showTabBar(200)
+      TabView.showTabBar(200)
     }
     openLbs(){
       this.setState({modalVisible: true})

@@ -38,5 +38,7 @@ export default {
   coupon0: require('./images/coupon_0.png'),
   coupon1: require('./images/coupon_1.png'),
   star1: require('./images/star.png'),
-  star2: require('./images/star-1.png')
+  star2: require('./images/star-1.png'),
+  qrcode: require('./images/Scan_Barcode.png'),
+  article: require('./images/article.svg'),
 }
