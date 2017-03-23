@@ -11,7 +11,7 @@ import { StyleSheet,
          Dimensions,
          TouchableWithoutFeedback } from 'react-native';
 
-import Icon from 'react-native-vector-icons/Ionicons';  // 神秘的 无法识别
+import Icon from 'react-native-vector-icons/Ionicons';  // 神秘的 无法识别; react-native link 命令就解决了
 import LocalImg from '../images';
 import px2dp from '../util';
 
@@ -56,7 +56,7 @@ export default class Discover extends Component {
                return (
                  <TouchableWithoutFeedback key={index}>
                    <View style={{ alignItems: 'center'} /* 为什么可用 ？ */}>
-                      <Icon name="ios-person" size={30} color="#4F8EF7" />
+                      <Icon name="ios-person" size={30} color="white" />
                       <Text style={{color: 'white', textAlign: 'center', fontSize: px2dp(13), paddingTop: 10}}>{item[0]}</Text>
                    </View>
                  </TouchableWithoutFeedback>

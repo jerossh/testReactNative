@@ -9,7 +9,7 @@ export default class Wrapper extends Component {
     render () {
         return (
           <View style={{flex: 1, justifyContent: 'flex-end'}}>
-              <Text style={{backgroundColor: 'red'}}>123</Text>
+              <TabView navigator={this.props.navigator}/>
           </View>
         );
     }
