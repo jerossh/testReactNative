@@ -431,7 +431,7 @@ export default class Navigation extends Component {
                     onScroll={Animated.event(
                       [{nativeEvent: {contentOffset: {y: this.state.scrollY}}}]
                     )}
-                    scrollEventThrottle={100}
+                    scrollEventThrottle={13 /* 估计很吃性能 */}
                     refreshControl={
                       <RefreshControl
                         refreshing={this.state.isRefreshing}
