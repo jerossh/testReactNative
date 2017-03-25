@@ -70,8 +70,9 @@ export default class Discover extends Component {
       //   inputRange: [0, px2dp(86)], // 输入高度
       //   outputRange: [px2dp(86), 0] // 输出透明度
       // });
+
       return (
-        <View style={[styles.qkZone, {height: 10}]}>
+        <View style={[styles.qkZone]}>
            {
              qk4.map((item, index) => {
                return (
@@ -116,7 +117,6 @@ export default class Discover extends Component {
               </ScrollView>
               <View style={styles.header}>
                 {this._renderHeader()}
-                {this._qkZone()}
               </View>
 
             </View>   
@@ -165,14 +165,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   qkZone: {
-    // marginTop: px2dp(136) + signHeight,
-    paddingBottom: 1,
-    height: px2dp(186),
-    // flex: 1,
-    backgroundColor: "#38f",
+    marginTop: px2dp(35) + signHeight,
+    paddingTop: px2dp(10),
+    paddingBottom: px2dp(10),
+    height: px2dp(86),
+    // flex: 1, // 奇怪的属性，导致奇怪的高度
+    // height: 10,
+    backgroundColor: "#678",
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: 'space-around'
   },
-
 });
+
+
+
+// 疑问 qkZone 为什么 不能设置高度， flex 到底是什么
