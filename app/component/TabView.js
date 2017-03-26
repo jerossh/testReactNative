@@ -24,10 +24,10 @@ export default class TabView extends Component {
       hideTabBar: false
   }
   tabNames = [
-    ["菜鸟", "logo-google", "HomePage", <HomePage {...this.props}/>],
-    ["了么", "ios-compass-outline", "Discover", <Discover {...this.props}/>],
-    ["订单", "ios-list-box-outline", "Order", <Order {...this.props}/>],
-    ["我的", "ios-contact-outline", "My", <My {...this.props}/>]
+    ["首页", "ios-home-outline", "HomePage", <HomePage {...this.props}/>],
+    ["营销", "ios-compass-outline", "Discover", <Discover {...this.props}/>],
+    ["管理", "ios-list-box-outline", "Order", <Order {...this.props}/>],
+    ["我", "ios-contact-outline", "My", <My {...this.props}/>]
   ]
 
   showTabBar = (time) => {
@@ -61,8 +61,8 @@ export default class TabView extends Component {
                     title={item[0]}
                     selected={this.state.currentTab === item[2] /* 当前页面 */}
                     selectedTitleStyle={{color: "#3496f0", fontSize: px2dp(14)}}
-                    // renderIcon={() => <Icon name={item[1]} size={px2dp(22)} color="#666" />}
-                    // renderSelectedIcon={() => <Icon name={item[1].replace(/\-outline$/, "")} size={px2dp(22)} color="#3496f0" />}
+                    renderIcon={() => <Icon name={item[1]} size={px2dp(22)} color="#666" />}
+                    renderSelectedIcon={() => <Icon name={item[1].replace(/\-outline$/, "")} size={px2dp(22)} color="#3496f0" />}
                     onPress={() => this.setState({ currentTab: item[2] })}>
                     {item[3]}
                 </TabNavigator.Item>
@@ -76,7 +76,8 @@ export default class TabView extends Component {
 
 const styles = StyleSheet.create({
     tabbar: {
-      height: px2dp(46),
+      // padding: px2dp(0),
+      height: px2dp(48),
       alignItems:'center',
       justifyContent: 'center',
       backgroundColor: '#fff',
@@ -87,6 +88,7 @@ const styles = StyleSheet.create({
       ]
     },
     tabStyle:{
-      padding: px2dp(4)
+      padding: px2dp(0),
+      // paddingTop: px2dp(8)
     }
 })
