@@ -32,9 +32,9 @@ export default class Discover extends Component {
     }
 
     _onRefresh(){
-      this.setState({isRefreshing: true});
+      this.setState({isRefreshing: true, num: 20});
       setTimeout(() => {
-        this.setState({isRefreshing: false});
+        this.setState({isRefreshing: false, num: 12});
       }, 2000);
     }
 
@@ -43,17 +43,14 @@ export default class Discover extends Component {
       console.log(33);
     }
 
-    componentWillMount() {
+    componentWillMount() { // 首次加载触发这个
       this.state.num+=2;
     }
-
-    
-
 
     _renderHeader() {
       const iconSize = 18;
 
-      return ( // 按照文档流所以这个药在最下方，才能覆盖最上面的
+      return ( // 按照文档流所以这个要在最下方，才能覆盖最上面的
         <View style={{flexDirection: 'row', paddingBottom: px2dp(10)}}>
            <View style={[styles.headerBtn,{flex: 1}]}>
               <Icon name='ios-add-circle-outline' color='white' size={iconSize} />
@@ -61,7 +58,7 @@ export default class Discover extends Component {
            </View>
            <View style={[styles.searchTextBtn ,{flex: 5, flexDirection: 'row'}]}>
                 <Icon name='ios-search-outline' color={mainColor} size={18} style={{paddingRight:px2dp(4), paddingTop: 2}} />
-                <Text style={{color: mainColor}}>搜索文章或名片信息</Text>
+                <Text style={{color: mainColor, fontSize: 12}}>搜索文章或名片信息</Text>
            </View>
            <View style={[styles.headerBtn,{flex: 1}]}>
              <Icon name='ios-alert-outline' color='white' size={iconSize} />
@@ -80,8 +77,8 @@ export default class Discover extends Component {
         outputRange: [1, 0, 0] // 输出透明度
       });
       let keyHeight = this.state.scrollY.interpolate({  // this.state.scrollY 是一个 动画值
-        inputRange: [0, qkZoneHeight, 99999], // 输入高度，999 防止循环重复
-        outputRange: [qkZoneHeight, 0, 0] // 输出高度
+        inputRange: [-999, 0, qkZoneHeight, 99999], // 输入高度，999 防止循环重复; -999 防止下拉变大
+        outputRange: [qkZoneHeight ,qkZoneHeight, 0, 0] // 输出高度
       });
 
       let qk4 = [
@@ -130,7 +127,7 @@ export default class Discover extends Component {
                 }
               >
                 <View style={{backgroundColor: 'white', height: 1000, marginTop: px2dp(165)}}>
-                   <Animated.Text>{1}</Animated.Text>
+                   <Animated.Text>{this.state.num}</Animated.Text>
                 </View>
               </ScrollView>
               <View style={styles.header}>
