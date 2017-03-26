@@ -21,12 +21,14 @@ import px2dp from '../util';
 const isIOS = Platform.OS === 'ios';
 const { width, height } = Dimensions.get('window');
 const signHeight = isIOS ? 30 : 10;
+const mainColor = '#38f';
 
 
 export default class Discover extends Component {
     state = {
       scrollY: new Animated.Value(0),
       isRefreshing: false,
+      num: 10
     }
 
     _onRefresh(){
@@ -36,57 +38,75 @@ export default class Discover extends Component {
       }, 2000);
     }
 
+    componentWillUpdate() { // 切换 触发了这个
+      this.state.num++;
+      console.log(33);
+    }
+
+    componentWillMount() {
+      this.state.num+=2;
+    }
+
+    
 
 
     _renderHeader() {
+      const iconSize = 18;
+
       return ( // 按照文档流所以这个药在最下方，才能覆盖最上面的
         <View style={{flexDirection: 'row', paddingBottom: px2dp(10)}}>
-           <View style={[styles.backBtn,{flex: 1}]}>
-              <Icon name='ios-add-circle-outline' color='white' size={24} />
+           <View style={[styles.headerBtn,{flex: 1}]}>
+              <Icon name='ios-add-circle-outline' color='white' size={iconSize} />
+              <Text style={styles.headerText}>添加</Text>
            </View>
-           <View style={[styles.searchTextBtn ,{flex: 5}]}>
-                <Text style={{color: 'white', opacity: 1}}>搜索文章或名片信息</Text>
+           <View style={[styles.searchTextBtn ,{flex: 5, flexDirection: 'row'}]}>
+                <Icon name='ios-search-outline' color={mainColor} size={18} style={{paddingRight:px2dp(4), paddingTop: 2}} />
+                <Text style={{color: mainColor}}>搜索文章或名片信息</Text>
            </View>
-           <View style={[styles.backBtn,{flex: 1}]}>
-             <Icon name='ios-alert-outline' color='white' size={24} />
+           <View style={[styles.headerBtn,{flex: 1}]}>
+             <Icon name='ios-alert-outline' color='white' size={iconSize} />
+             <Text  style={styles.headerText}>消息</Text>
             </View>  
         </View>
       );
     }
     _qkZone() {
       // const w = width/4, h = w*.6 + 20;
-      const qk4 = [
+      const qkZoneHeight = px2dp(86);
+
+
+      let keyOpaticy = this.state.scrollY.interpolate({  // this.state.scrollY 是一个 动画值
+        inputRange: [0, qkZoneHeight*0.8, 9999], // 输入高度
+        outputRange: [1, 0, 0] // 输出透明度
+      });
+      let keyHeight = this.state.scrollY.interpolate({  // this.state.scrollY 是一个 动画值
+        inputRange: [0, qkZoneHeight, 99999], // 输入高度，999 防止循环重复
+        outputRange: [qkZoneHeight, 0, 0] // 输出高度
+      });
+
+      let qk4 = [
         ['扫一扫', 'ios-crop-outline'],
         ['精选文章', 'ios-book-outline'],
         ['广告设置', 'ios-briefcase-outline'],
         ['我的名片', 'ios-card-outline']
       ];
 
-      // let keyOpaticy = this.state.scrollY.interpolate({  // this.state.scrollY 是一个 动画值
-      //   inputRange: [0, px2dp(86)], // 输入高度
-      //   outputRange: [1, 0] // 输出透明度
-      // });
-      // let keyHeight = this.state.scrollY.interpolate({  // this.state.scrollY 是一个 动画值
-      //   inputRange: [0, px2dp(86)], // 输入高度
-      //   outputRange: [px2dp(86), 0] // 输出透明度
-      // });
-
       return (
-        <View style={[styles.qkZone]}>
+        <Animated.View style={[styles.qkZone, { height: keyHeight}]}>
            {
              qk4.map((item, index) => {
                return (
                  <TouchableWithoutFeedback key={index}>
-                   <View style={{ alignItems: 'center'} /* 为什么可用 ？ */}>
+                   <Animated.View style={{ alignItems: 'center',backgroundColor: 'transparent', opacity: keyOpaticy} /* 为什么可用 ？ */}>
                       <Icon name={item[1]} size={30} color="white" />
-                      <Text style={{color: 'white', textAlign: 'center', fontSize: px2dp(13), paddingTop: 10}}>{item[0]}</Text>
-                   </View>
+                      <Animated.Text style={{color: 'white', textAlign: 'center', fontSize: px2dp(11), paddingTop: px2dp(4)}}>{item[0]}</Animated.Text>
+                   </Animated.View>
                  </TouchableWithoutFeedback>
                )
              })
            }
            
-        </View>
+        </Animated.View>
       );
     }
 
@@ -95,9 +115,7 @@ export default class Discover extends Component {
     render() {
         return (
             <View style={styles.container}>
-              {this._qkZone()}
               <ScrollView 
-                style={{marginTop: px2dp(10)}}
                 onScroll={Animated.event(
                             [{nativeEvent: {contentOffset: {y: this.state.scrollY}}}] // 添加一个动画事件，
                           )}
@@ -111,12 +129,13 @@ export default class Discover extends Component {
                       />
                 }
               >
-                <View style={{backgroundColor: 'white', height: 1000}}>
-                   <Text>{1}</Text>
+                <View style={{backgroundColor: 'white', height: 1000, marginTop: px2dp(165)}}>
+                   <Animated.Text>{1}</Animated.Text>
                 </View>
               </ScrollView>
               <View style={styles.header}>
                 {this._renderHeader()}
+                {this._qkZone()}
               </View>
 
             </View>   
@@ -140,7 +159,7 @@ const styles = StyleSheet.create({
     right: 0,
     top: 0,
     // bottom:0, // 这个是全凭渲染
-    backgroundColor: '#38f',
+    backgroundColor: mainColor,
     paddingHorizontal: 10,
     paddingTop: signHeight, // 安卓状态栏自动留出，苹果不会
     // paddingBottom: 10,
@@ -149,32 +168,38 @@ const styles = StyleSheet.create({
     alignItems: 'stretch', // 没有 拉伸效果，子项目还是要设置高度
     // height: px2dp(30) + 30，
   },
-  backBtn: {
+  headerText: {
+    color: 'white',
+    fontSize: px2dp(9)
+  },
+  headerBtn: {
     height: px2dp(30), // 至少一个高度？
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: px2dp(5)
+    // paddingTop: px2dp(4.4)
   }, 
   searchTextBtn: {
     backgroundColor: 'white',
-    opacity: 0.4,
+    // opacity: 0.4,
     paddingHorizontal: 10,
     borderRadius: 5,
     marginHorizontal: px2dp(10),
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#def'
   },
   qkZone: {
-    marginTop: px2dp(35) + signHeight,
-    paddingTop: px2dp(10),
-    paddingBottom: px2dp(10),
-    height: px2dp(86),
+    // marginTop: px2dp(5),
+    // paddingTop: px2dp(15),
+    // paddingBottom: px2dp(10),
+    // height: px2dp(86),
     // flex: 1, // 奇怪的属性，导致奇怪的高度
     // height: 10,
-    backgroundColor: "#678",
+    backgroundColor: "#38f",
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    alignItems: 'center'
   },
 });
 
