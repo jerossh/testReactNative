@@ -14,15 +14,14 @@ import { Animated,
          TouchableWithoutFeedback } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';  // 神秘的 无法识别; react-native link 命令就解决了
+import Swiper from 'react-native-swiper';
 import LocalImg from '../images';
 import px2dp from '../util';
-
 
 const isIOS = Platform.OS === 'ios';
 const { width, height } = Dimensions.get('window');
 const signHeight = isIOS ? 30 : 10;
 const mainColor = '#38f';
-
 
 export default class Discover extends Component {
     state = {
@@ -126,7 +125,7 @@ export default class Discover extends Component {
                       />
                 }
               >
-                <View style={{backgroundColor: 'white', height: 1000, marginTop: px2dp(165)}}>
+                <View style={{backgroundColor: 'white', height: 1000, marginTop: px2dp(86)+px2dp(46)+signHeight}}>
                    <Animated.Text>{this.state.num}</Animated.Text>
                 </View>
               </ScrollView>
@@ -183,7 +182,6 @@ const styles = StyleSheet.create({
     marginHorizontal: px2dp(10),
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#def'
   },
   qkZone: {
     // marginTop: px2dp(5),
