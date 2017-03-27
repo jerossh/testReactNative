@@ -14,7 +14,7 @@ import { Animated,
          TouchableWithoutFeedback } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';  // 神秘的 无法识别; react-native link 命令就解决了
-import Swiper from 'react-native-swiper';
+import Swiper from '../component/Swiper2'
 import LocalImg from '../images';
 import px2dp from '../util';
 
@@ -106,6 +106,12 @@ export default class Discover extends Component {
       );
     }
 
+    // cards() {
+    //   const 
+    // }
+
+    
+
 
 
     render() {
@@ -126,6 +132,7 @@ export default class Discover extends Component {
                 }
               >
                 <View style={{backgroundColor: 'white', height: 1000, marginTop: px2dp(86)+px2dp(46)+signHeight}}>
+                   <Swiper />
                    <Animated.Text>{this.state.num}</Animated.Text>
                 </View>
               </ScrollView>

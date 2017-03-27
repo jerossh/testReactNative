@@ -40,5 +40,8 @@ export default {
   star1: require('./images/star.png'),
   star2: require('./images/star-1.png'),
   qrcode: require('./images/Scan_Barcode.png'),
-  article: require('./images/article.svg'),
+  loading: require('./images/loading-1.gif'),
+  // slide1: require('./images/1.png'),
+  // slide2: require('./images/2.jpg'),
+  // slide3: require('./images/3.jpg')
 }
