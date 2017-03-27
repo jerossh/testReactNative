@@ -2909,10 +2909,6 @@ react-deep-force-update@^1.0.0:
   version "1.0.1"
   resolved "http://registry.npm.taobao.org/react-deep-force-update/download/react-deep-force-update-1.0.1.tgz#f911b5be1d2a6fe387507dd6e9a767aa2924b4c7"
 
-react-native-blur@^2.0.0:
-  version "2.0.0"
-  resolved "http://registry.npm.taobao.org/react-native-blur/download/react-native-blur-2.0.0.tgz#284b3abfb42c2d90924aa15f494ccb88d6055342"
-
 react-native-parabolic@^1.0.0:
   version "1.1.1"
   resolved "http://registry.npm.taobao.org/react-native-parabolic/download/react-native-parabolic-1.1.1.tgz#216b6f74686a9226c59f51aae949daf253217944"
@@ -2926,13 +2922,6 @@ react-native-scrollable-tab-view@^0.7.1:
 react-native-splash-screen@^2.0.0:
   version "2.0.0"
   resolved "http://registry.npm.taobao.org/react-native-splash-screen/download/react-native-splash-screen-2.0.0.tgz#d03caaef7d92a0ac1eab60ee4204a1d6bf8234ec"
-
-react-native-svg:
-  version "5.1.6"
-  resolved "http://registry.npm.taobao.org/react-native-svg/download/react-native-svg-5.1.6.tgz#c9670eb6b3f62b013d8e135ddfaaca07bb0aec27"
-  dependencies:
-    color "^0.11.1"
-    lodash "^4.16.6"
 
 react-native-swiper@^1.5.4:
   version "1.5.4"

@@ -5,7 +5,12 @@ import android.app.Application;
 import com.facebook.react.ReactApplication;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.cboy.rn.splashscreen.SplashScreenReactPackage;
-import com.cmcewen.blurview.BlurViewPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.cboy.rn.splashscreen.SplashScreenReactPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.cboy.rn.splashscreen.SplashScreenReactPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.cboy.rn.splashscreen.SplashScreenReactPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -28,7 +33,12 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new VectorIconsPackage(),
             new SplashScreenReactPackage(),
-            new BlurViewPackage()
+            new VectorIconsPackage(),
+            new SplashScreenReactPackage(),
+            new VectorIconsPackage(),
+            new SplashScreenReactPackage(),
+            new VectorIconsPackage(),
+            new SplashScreenReactPackage()
       );
     }
   };
