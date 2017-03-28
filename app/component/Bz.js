@@ -43,10 +43,11 @@ export default class Bz extends Component {
       "特": "#f1884f",
       "新": "#73f08e"
     }
-    let {activities} = this.props
-    if(!activities || !activities.length){
-      return null
-    }else{
+    let {activities} = this.props;
+
+    if (!activities || !activities.length){
+        return null
+    } else  {
       return (
         <View style={styles.actives}>
           {
