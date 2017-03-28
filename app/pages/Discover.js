@@ -14,7 +14,8 @@ import { Animated,
          TouchableWithoutFeedback } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';  // 神秘的 无法识别; react-native link 命令就解决了
-import Swiper from '../component/Swiper2'
+import Swiper from '../component/Swiper2';
+import Card from '../component/Card';
 import LocalImg from '../images';
 import px2dp from '../util';
 
@@ -75,6 +76,10 @@ export default class Discover extends Component {
         inputRange: [0, qkZoneHeight*0.8, 9999], // 输入高度
         outputRange: [1, 0, 0] // 输出透明度
       });
+      let fontOpaticy = this.state.scrollY.interpolate({  // this.state.scrollY 是一个 动画值
+        inputRange: [0, qkZoneHeight, 9999], // 输入高度
+        outputRange: [1, 0, 0] // 输出透明度
+      });
       let keyHeight = this.state.scrollY.interpolate({  // this.state.scrollY 是一个 动画值
         inputRange: [-999, 0, qkZoneHeight, 99999], // 输入高度，999 防止循环重复; -999 防止下拉变大
         outputRange: [qkZoneHeight ,qkZoneHeight, 0, 0] // 输出高度
@@ -95,7 +100,7 @@ export default class Discover extends Component {
                  <TouchableWithoutFeedback key={index}>
                    <Animated.View style={{ alignItems: 'center',backgroundColor: 'transparent', opacity: keyOpaticy} /* 为什么可用 ？ */}>
                       <Icon name={item[1]} size={30} color="white" />
-                      <Animated.Text style={{color: 'white', textAlign: 'center', fontSize: px2dp(11), paddingTop: px2dp(4)}}>{item[0]}</Animated.Text>
+                      <Animated.Text style={{color: 'white', textAlign: 'center', fontSize: px2dp(11), paddingTop: px2dp(4), opacity: fontOpaticy}}>{item[0]}</Animated.Text>
                    </Animated.View>
                  </TouchableWithoutFeedback>
                )
@@ -131,9 +136,19 @@ export default class Discover extends Component {
                       />
                 }
               >
-                <View style={{backgroundColor: 'white', height: 1000, marginTop: px2dp(86)+px2dp(46)+signHeight}}>
-                   <Swiper />
-                   <Animated.Text>{this.state.num}</Animated.Text>
+                <View style={styles.scrollZone}>
+                   <View style={styles.swiper}>
+                      <Swiper />
+                   </View>
+                   <View style={styles.cards}>
+                      <Text style={{fontWeight: 'bold', fontSize: 17}}>活跃名片</Text>
+                      <Card />
+                      <Card />
+                      <Card />
+                      <Card />
+                      <Card />
+                      <Card />
+                   </View>
                 </View>
               </ScrollView>
               <View style={styles.header}>
@@ -203,6 +218,22 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center'
   },
+
+  scrollZone: {
+    backgroundColor: '#f1f3f9', 
+    // height: 1000, 
+    paddingBottom: px2dp(48) + px2dp(10),
+    marginTop: px2dp(86) + px2dp(40) + signHeight
+  },
+  swiper: {
+    marginTop: px2dp(10),
+  },
+  cards: {
+    paddingHorizontal: px2dp(10),
+    marginTop: px2dp(10),
+    backgroundColor: 'white',
+    paddingVertical: px2dp(10)
+  }
 });
 
 

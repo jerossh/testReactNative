@@ -10,7 +10,7 @@ export default class Navigation extends Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.welcome}>
-                订单
+                营销
                 </Text>
                 <Text style={styles.instructions}>
                 To get started, edit index.ios.js
