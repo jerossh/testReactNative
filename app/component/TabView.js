@@ -12,8 +12,8 @@ import Icon from 'react-native-vector-icons/Ionicons';  // 神秘的 无法识�
 import TabNavigator from 'react-native-tab-navigator'; 
 import px2dp from '../util';
 let {width, height} = Dimensions.get('window'); // 本模块用于获取设备屏幕的宽高。
-import HomePage from '../pages/Discover'
-import Discover from '../pages/Home'
+import HomePage from '../pages/Home'
+import Discover from '../pages/Home2'
 import Order from '../pages/Manage'
 import My from '../pages/My'
 

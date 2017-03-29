@@ -19,9 +19,9 @@ export default class Navigation extends Component {
         return (
             <Navigator
               initialRoute={{ name: defaultName, component: Wrapper }}
+              configureScene={() => Navigator.SceneConfigs.FloatFromRight}
               renderScene={(route, navigator) => {
-                let Component = route.component;
-                return <Component {...route.params} navigator={navigator} />
+                return <route.component navigator={navigator} {...route.args} />
               }} />
         )
     }

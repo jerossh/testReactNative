@@ -35,9 +35,9 @@ export default class cards extends Component {
     // }
 
     render () {
-        const {name, avatar, position, content, onpress} = this.props;
+        const {name, avatar, position, content, onPress} = this.props;
         return (
-          <Button onpress={onpress}>  
+          <Button onPress={onPress}>  
                 <View style={[styles.wrap ,{flexDirection: 'row'}]}>
                     <View style={{flex: 1}}>
                         <Image source={avatar} style={{width: 90, height: 90}} />
