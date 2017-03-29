@@ -13,7 +13,7 @@ import TabNavigator from 'react-native-tab-navigator';
 import px2dp from '../util';
 let {width, height} = Dimensions.get('window'); // 本模块用于获取设备屏幕的宽高。
 import HomePage from '../pages/Discover'
-import Discover from '../pages/Market'
+import Discover from '../pages/Home'
 import Order from '../pages/Manage'
 import My from '../pages/My'
 

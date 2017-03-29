@@ -409,8 +409,8 @@ export default class Navigation extends Component {
       </View>
     )
   }
-    _renderBZ(){
-        return data.list.map((item, i) => {
+  _renderBZ(){
+      return data.list.map( (item, i) => {
           item.onPress = () => {
             this.props.navigator.push({
                 component: DetailPage,
@@ -418,9 +418,9 @@ export default class Navigation extends Component {
             })
           }
           return (<Bz {...item} key={i}/>)
-        })
-      }
-      
+      })
+    }
+    
 
     // nativeEvent 是什么神秘的东西？
     render() {

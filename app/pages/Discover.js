@@ -17,6 +17,7 @@ import Icon from 'react-native-vector-icons/Ionicons';  // 神秘的 无法识�
 import Swiper from '../component/Swiper2';
 import Card from '../component/Card';
 import LocalImg from '../images';
+import data from '../data2'
 import px2dp from '../util';
 
 const isIOS = Platform.OS === 'ios';
@@ -111,9 +112,18 @@ export default class Discover extends Component {
       );
     }
 
-    // cards() {
-    //   const 
-    // }
+    _cards() {
+      return data.list.map((item, index) => {
+          item.onPress = () => {
+              this.props.navigator.push({
+                  component: DetailPage,
+                  args: {}
+              })
+              this.setState({num: 1000})
+            }
+            return (<Card {...item} key={index}/>)
+      })
+    }
 
     
 
@@ -141,13 +151,8 @@ export default class Discover extends Component {
                       <Swiper />
                    </View>
                    <View style={styles.cards}>
-                      <Text style={{fontWeight: 'bold', fontSize: 17}}>活跃名片</Text>
-                      <Card />
-                      <Card />
-                      <Card />
-                      <Card />
-                      <Card />
-                      <Card />
+                      <Text style={{fontWeight: 'bold', fontSize: 17}}>活跃名片{this.state.numgit}</Text>
+                      {this._cards()}
                    </View>
                 </View>
               </ScrollView>
@@ -229,7 +234,7 @@ const styles = StyleSheet.create({
     marginTop: px2dp(10),
   },
   cards: {
-    paddingHorizontal: px2dp(10),
+    paddingHorizontal: px2dp(15),
     marginTop: px2dp(10),
     backgroundColor: 'white',
     paddingVertical: px2dp(10)

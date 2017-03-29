@@ -10,6 +10,7 @@ import {
   TouchableNativeFeedback
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Button from '../component/Button';
 import LocalImg from '../images';
 import px2dp from '../util';
 
@@ -34,17 +35,20 @@ export default class cards extends Component {
     // }
 
     render () {
+        const {name, avatar, position, content, onpress} = this.props;
         return (
-          <View style={[styles.wrap ,{flexDirection: 'row'}]}>
-              <View style={{flex: 1}}>
-                  <Image source={LocalImg.h5} style={{width: 100, height: 80}} />
-              </View>
-              <View  style={{flex: 2, justifyContent: 'space-between'}}>
-                  <Text style={styles.title}>蔺冰冰</Text>
-                  <Text style={styles.subTile}>嘉兴中誉会计事物有限公司总经理</Text>
-                  <Text style={styles.content}>我们的团队中，团队成员至少从业2两年以上，涉及公司注册、公司注销、代理记账等业务。</Text>
-              </View>
-          </View>
+          <Button onpress={onpress}>  
+                <View style={[styles.wrap ,{flexDirection: 'row'}]}>
+                    <View style={{flex: 1}}>
+                        <Image source={avatar} style={{width: 90, height: 90}} />
+                    </View>
+                    <View  style={{flex: 2, justifyContent: 'space-between', paddingLeft: px2dp(10)}}>
+                        <Text style={styles.title}>{name}</Text>
+                        <Text style={styles.subTile}>{position}</Text>
+                        <Text style={styles.content}>{content}</Text>
+                    </View>
+                </View>
+          </Button>
         )
     }
 }
@@ -53,5 +57,5 @@ const styles = StyleSheet.create({
     wrap: {marginTop: 10 , paddingVertical: px2dp(10), borderTopWidth: 1, borderTopColor: '#eee'},
     title: {fontSize: 16, color: '#333'},
     subTile: {fontSize: 10, color: '#999'},
-    content: {fontSize: 11, color: '#999', paddingBottom: 3}
+    content: {fontSize: 11, color: '#999', paddingBottom: 3, lineHeight: 15}
 });

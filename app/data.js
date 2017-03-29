@@ -127,6 +127,8 @@ let d = {
     }
   ]
 }
+
+
 let pics = ["h0","h1","h2","h3","h4","h6","h8","h9","h10","h11","h12","h13","h14","h15","hot3","sale0","sale1","sale2","sale3"]
 let len = pics.length
 let goods = {
@@ -191,11 +193,13 @@ let goods = {
     //{name: "肥牛+菜心+怡泉", info:"", sale:"", price:28, image:""}
   ]
 }
+
 Object.keys(goods).forEach((item, i) => {
   goods[item].forEach((e, j) => {
-    goods[item][j].key = i+"-"+j
+    goods[item][j].key = i+"-"+j // 每个项目的 key
     //goods[item][j].image = pics[Math.floor(Math.random()*len)]
   })
 })
+
 d.goods = goods
 export default d
