@@ -8,14 +8,9 @@ import DetailPage from './pages/DetailPage';
 const navigator = StackNavigator({
   Home: { screen: Wrapper, navigationOptions: {header: {visible: false}}},
   DetailPage: { screen: DetailPage }
-}, {
-  initialRouteName: 'Home', // 只能选第一个，有意义时？
-  navigationOptions: {
-    header: {
-      style: {height: 0}
-    }
-  }
-});
+},{ 
+    headerMode: 'screen' 
+  });
 
 export default  navigator;
 
