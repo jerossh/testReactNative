@@ -19,6 +19,12 @@ import My from '../pages/My'
 
 export default class TabView extends Component {
 
+  static navigationOptions = {
+    header: {
+      hide: true
+    },
+  };
+
   state = {
       currentTab: 'HomePage',
       hideTabBar: false

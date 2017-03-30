@@ -13,6 +13,10 @@ import {
 } from 'react-native';
 
 export default class justRN extends Component {
+
+  static navigationOptions = {
+    title: ({state}) => `${state.params.name}的名片`
+  };
   render() {
     return (
       <View style={styles.container}>
