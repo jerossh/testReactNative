@@ -116,7 +116,7 @@ export default class Discover extends Component {
     _cards() {
       return data.list.map((item, index) => {
           item.onPress = () => {
-              this.props.navigation.navigate('DetailPage', {name: item.name})
+              this.props.navigation.navigate('DetailPage', {name: item.name, modalVisible: false})
             }
             return (<Card {...item} key={index}/>)
       })

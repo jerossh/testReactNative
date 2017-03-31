@@ -21,39 +21,63 @@ import px2dp from '../util';
 export default class DetailPage extends Component {
 
   state = {
-    modalVisible: false,
-    num: 1
+      modalVisible: false,
+      num: 1
   }
 
-  openModal= () => this.setState({modalVisible: true, num: 10})
-  closeModal= () => this.setState({modalVisible: false, num: 10})
+
+
+  static navigationOptions = {
+    title: ({state}) => `${state.params.name}的名片`,
+
+    header: ({ state, setParams }) => {
+      let right = (
+          <Button onPress={(state) => setParams({modalVisible: true})}>
+            <Icon name='ios-more-outline' size={40} color='#38f' style={{paddingRight: px2dp(10)}}/>
+          </Button>
+      )
+      return { right };
+    }  
+    // header: {
+    //     right:   (<Button onPress={() => setParams({ mode: 'none' })}>
+    //                 <Icon name='ios-more-outline' size={40} color='#38f' style={{paddingRight: px2dp(10)}}/>
+    //               </Button>)
+      
+    // },
+  }
     
-  
   
   _popText() {
         const popData = [{}, {}, {}];
         const iconSize = 20;
+        const { state, setParams } = this.props.navigation
         return (
           <Modal
-              transparent={false}
-              visible={this.state.modalVisible}
+              animationType={"fade"}
+              transparent={true}
+              visible={state.params.modalVisible}
+              // style={styles.modal}
+              underlayColor="#a9d9d4"
               onRequestClose={() => {alert("Modal has been closed.")}}
           >
-              <View style={styles.popText}>
-                {
-                  popData.map((item, index)=> {
-                    return (
-                        <TouchableWithoutFeedback key={index}>
-                            <View style={styles.popTextBtn}>
-                                <Icon name='ios-people-outline' size={iconSize} color='#333'/>
-                                <Text style={{paddingLeft: px2dp(4), color: '#333', fontSize: px2dp(11)}}>发给朋友</Text>  
-                          </View> 
-                        </TouchableWithoutFeedback>
-                    )
-                  })
-                }    
-                <Button onPress={this.closeModal}><Text>关闭</Text></Button> 
+              <TouchableWithoutFeedback onPress={()=> setParams({modalVisible: false})}>
+              <View style={{flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
+                <View style={styles.popText}>
+                  {
+                    popData.map((item, index)=> {
+                      return (
+                          <TouchableWithoutFeedback key={index}>
+                              <View style={styles.popTextBtn}>
+                                  <Icon name='ios-people-outline' size={iconSize} color='#333'/>
+                                  <Text style={{paddingLeft: px2dp(4), color: '#333', fontSize: px2dp(11)}}>发给朋友</Text>  
+                            </View> 
+                          </TouchableWithoutFeedback>
+                      )
+                    })
+                  }    
+                </View>
               </View>
+              </TouchableWithoutFeedback>
           </Modal>
         )
   }
@@ -109,18 +133,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: px2dp(5),
     marginHorizontal: px2dp(5),
     paddingVertical: px2dp(3),
+  },
+  modal: {
+    backgroundColor: 'red'
   }
 });
 
 
-DetailPage.navigationOptions = {
-    title: ({state}) => `${state.params.name}的名片`,
-    header: {
-        right: (<Button onPress={DetailPage.openModal}>
-          <Icon name='ios-more-outline' size={40} color='#38f' style={{paddingRight: px2dp(10)}}/>
-        </Button>)
-    },
-  };
+
 
 
 
