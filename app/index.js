@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Navigator, Platform } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import Wrapper from './component/TabView';
+import Wrapper from './component/Wrapper';
 import DetailPage from './pages/DetailPage';
 
 const navigator = StackNavigator({

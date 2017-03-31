@@ -129,7 +129,7 @@ export default class Discover extends Component {
                 onScroll={Animated.event(
                             [{nativeEvent: {contentOffset: {y: this.state.scrollY}}}] // 添加一个动画事件，
                           )}
-                scrollEventThrottle={13 /* 估计很吃性能 */}
+                scrollEventThrottle={16.67 /* 估计很吃性能 */}
                 refreshControl={
                       <RefreshControl
                         refreshing={this.state.isRefreshing}
@@ -144,7 +144,7 @@ export default class Discover extends Component {
                       <Swiper />
                    </View>
                    <View style={styles.cards}>
-                      <Text style={{fontWeight: 'bold', fontSize: 17}}>活跃名片{this.state.numgit}</Text>
+                      <Text style={{fontWeight: 'bold', fontSize: 17, marginBottom: 11}}>活跃名片{this.state.numgit}</Text>
                       {this._cards()}
                    </View>
                 </View>

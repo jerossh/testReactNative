@@ -11,7 +11,7 @@ import {
 export default class Button extends Component {
   render(){
     return Platform.OS === 'ios'?(
-      <TouchableHighlight {...this.props}>{this.props.children}</TouchableHighlight>
+      <TouchableHighlight {...this.props} underlayColor='#eee'>{this.props.children}</TouchableHighlight>
     ):(
       <View {...this.props}><TouchableNativeFeedback onPress={this.props.onPress}>{this.props.children}</TouchableNativeFeedback></View>
     )
