@@ -11,7 +11,8 @@ import {
   Text,
   View,
   TouchableWithoutFeedback,
-  Modal
+  Modal,
+  StatusBar
 } from 'react-native';
 
 import Button from '../component/Button';
@@ -90,6 +91,7 @@ export default class DetailPage extends Component {
   render() {
     return (
       <View style={styles.container}>
+      <StatusBar backgroundColor="blue" barStyle="dark-content" />
         {this._popText()}
         <Button onPress={this.openModal}><Text>开启</Text></Button>
         <Text style={styles.welcome}>

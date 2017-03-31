@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { Animated,
          StyleSheet, 
+         StatusBar,
          View, 
          ScrollView,
          Text, 
@@ -20,6 +21,7 @@ import LocalImg from '../images';
 import data from '../data2';
 import px2dp from '../util';
 import DetailPage from './DetailPage';
+// import StatusBar from '../component/StatusBar'
 
 const isIOS = Platform.OS === 'ios';
 const { width, height } = Dimensions.get('window');
@@ -125,6 +127,11 @@ export default class Discover extends Component {
     render() {
         return (
             <View style={styles.container}>
+              <StatusBar
+                  backgroundColor="blue"
+                  barStyle="light-content"
+                  showHideTransition='slide'
+              />
               <ScrollView 
                 onScroll={Animated.event(
                             [{nativeEvent: {contentOffset: {y: this.state.scrollY}}}] // 添加一个动画事件，
