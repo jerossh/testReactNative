@@ -26,6 +26,7 @@ export default class DetailPage extends Component {
   }
 
   openModal= () => this.setState({modalVisible: true, num: 10})
+  closeModal= () => this.setState({modalVisible: false, num: 10})
     
   
   
@@ -50,20 +51,13 @@ export default class DetailPage extends Component {
                         </TouchableWithoutFeedback>
                     )
                   })
-                }     
+                }    
+                <Button onPress={this.closeModal}><Text>关闭</Text></Button> 
               </View>
           </Modal>
         )
   }
 
-  static navigationOptions = {
-    title: ({state}) => `${state.params.name}的名片`,
-    header: {
-        right: (<Button onPress={this.openModal}>
-          <Icon name='ios-more-outline' size={40} color='#38f' style={{paddingRight: px2dp(10)}}/>
-        </Button>)
-    },
-  };
   render() {
     return (
       <View style={styles.container}>
@@ -117,6 +111,16 @@ const styles = StyleSheet.create({
     paddingVertical: px2dp(3),
   }
 });
+
+
+DetailPage.navigationOptions = {
+    title: ({state}) => `${state.params.name}的名片`,
+    header: {
+        right: (<Button onPress={DetailPage.openModal}>
+          <Icon name='ios-more-outline' size={40} color='#38f' style={{paddingRight: px2dp(10)}}/>
+        </Button>)
+    },
+  };
 
 
 
