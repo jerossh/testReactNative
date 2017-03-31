@@ -48,8 +48,10 @@ export default class DetailPage extends Component {
     
   
   _popText() {
-        const popData = [{}, {}, {}];
-        const iconSize = 20;
+        const popData = [['ios-people-outline', '发给朋友'], 
+                         ['ios-chatboxes-outline', '在线咨询'], 
+                         ['ios-alert-outline', '反馈错误']];
+        const iconSize = 26;
         const { state, setParams } = this.props.navigation
         return (
           <Modal
@@ -62,16 +64,19 @@ export default class DetailPage extends Component {
           >
               <TouchableWithoutFeedback onPress={()=> setParams({modalVisible: false})}>
               <View style={{flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
-                <View style={styles.popText}>
+                <View style={styles.triangle}>
+                  <Icon name='md-arrow-dropup' color='white' size={30} />
+                </View>
+                <View style={styles.popText}> 
                   {
                     popData.map((item, index)=> {
                       return (
-                          <TouchableWithoutFeedback key={index}>
-                              <View style={styles.popTextBtn}>
-                                  <Icon name='ios-people-outline' size={iconSize} color='#333'/>
-                                  <Text style={{paddingLeft: px2dp(4), color: '#333', fontSize: px2dp(11)}}>发给朋友</Text>  
-                            </View> 
-                          </TouchableWithoutFeedback>
+                        <TouchableWithoutFeedback key={index}>
+                          <View style={[styles.popTextBtn, {borderBottomWidth: 1, borderBottomColor: '#f6f6f6'}]}>
+                              <Icon name={item[0]} size={iconSize} color='#333'/>
+                              <Text style={{paddingLeft: px2dp(8), color: '#333', fontSize: px2dp(16)}}>{item[1]}</Text>  
+                          </View> 
+                        </TouchableWithoutFeedback>
                       )
                     })
                   }    
@@ -122,20 +127,23 @@ const styles = StyleSheet.create({
   popText: {
     backgroundColor: 'white',
     position: 'absolute',
-    top: 12,
+    top: 30 + 45 ,
     right: 10,
     borderWidth: 1,
-    borderColor: '#f9f9f9' 
+    borderColor: 'white',
+    borderRadius: 2
   },
   popTextBtn: {
     flexDirection: 'row', 
     alignItems: 'center',
-    paddingHorizontal: px2dp(5),
-    marginHorizontal: px2dp(5),
-    paddingVertical: px2dp(3),
+    paddingHorizontal: px2dp(15),
+    marginHorizontal: px2dp(15),
+    paddingVertical: px2dp(10),
   },
-  modal: {
-    backgroundColor: 'red'
+  triangle: {
+    position: 'absolute',
+    top: 30+28 ,
+    right: 15,
   }
 });
 

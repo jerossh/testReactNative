@@ -63,7 +63,7 @@ export default class Discover extends Component {
                 <Text style={{color: mainColor, fontSize: 12}}>搜索文章或名片信息</Text>
            </View>
            <View style={[styles.headerBtn,{flex: 1}]}>
-             <Icon name='ios-alert-outline' color='white' size={iconSize} />
+             <Icon name='ios-notifications-outline' color='white' size={iconSize} />
              <Text  style={styles.headerText}>消息</Text>
             </View>  
         </View>
