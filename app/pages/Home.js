@@ -127,11 +127,6 @@ export default class Discover extends Component {
     render() {
         return (
             <View style={styles.container}>
-              <StatusBar
-                  backgroundColor="blue"
-                  barStyle="light-content"
-                  showHideTransition='slide'
-              />
               <ScrollView 
                 onScroll={Animated.event(
                             [{nativeEvent: {contentOffset: {y: this.state.scrollY}}}] // 添加一个动画事件，

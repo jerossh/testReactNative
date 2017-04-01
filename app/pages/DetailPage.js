@@ -32,12 +32,14 @@ export default class DetailPage extends Component {
     title: ({state}) => `${state.params.name}的名片`,
 
     header: ({ state, setParams }) => {
+      let style = {backgroundColor: '#38f'}
+      let tintColor = 'white';
       let right = (
           <Button onPress={(state) => setParams({modalVisible: true})}>
-            <Icon name='ios-more-outline' size={40} color='#38f' style={{paddingRight: px2dp(10)}}/>
+            <Icon name='ios-more-outline' size={40} color='white' style={{paddingRight: px2dp(10)}}/>
           </Button>
       )
-      return { right };
+      return { right, tintColor, style };
     }  
     // header: {
     //     right:   (<Button onPress={() => setParams({ mode: 'none' })}>
@@ -91,7 +93,6 @@ export default class DetailPage extends Component {
   render() {
     return (
       <View style={styles.container}>
-      <StatusBar backgroundColor="blue" barStyle="dark-content" />
         {this._popText()}
         <Button onPress={this.openModal}><Text>开启</Text></Button>
         <Text style={styles.welcome}>

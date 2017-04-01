@@ -9,7 +9,8 @@ const navigator = StackNavigator({
   Home: { screen: Wrapper, navigationOptions: {header: {visible: false}}},
   DetailPage: { screen: DetailPage }
 },{ 
-    headerMode: 'screen' 
+    headerMode: 'screen',
+    navigationOptions: {header: {tintColor: 'red'}}
   });
 
 export default  navigator;

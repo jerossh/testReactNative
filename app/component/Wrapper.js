@@ -1,8 +1,8 @@
 
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StatusBar } from 'react-native';
 
-import StatusBar from './StatusBar'
+// import StatusBar from './StatusBar'
 import TabView from './TabView';
 
 export default class Wrapper extends Component {
@@ -12,6 +12,12 @@ export default class Wrapper extends Component {
     render () {
         return (
           <View style={{flex: 1, justifyContent: 'flex-end', backgroundColor: 'red'}}>
+              <StatusBar
+                  backgroundColor="blue"
+                  barStyle="light-content"
+                  showHideTransition='slide'
+                  networkActivityIndicatorVisible={false}
+              />
               <TabView navigation={this.props.navigation}/>
           </View>
         );
