@@ -14,23 +14,22 @@ import Button from '../component/Button';
 import LocalImg from '../images';
 import px2dp from '../util';
 
-export default class cards extends Component {
+export default class Newslist extends Component {
     // static propTypes = {
     //     name: PropTypes.string.isRequired, // 商家名
     // }
 
     render () {
-        const {name, avatar, position, content, onPress} = this.props;
+        const {name, image, origin, onPress} = this.props;
         return (
           <Button onPress={onPress}>  
                 <View style={[styles.wrap ,{flexDirection: 'row'}]}>
                     <View style={{flex: 1}}>
-                        <Image source={avatar} style={{width: 90, height: 90}} />
+                        <Image source={image} style={{width: 90, height: 90}} />
                     </View>
                     <View  style={{flex: 2, justifyContent: 'space-between', paddingLeft: px2dp(10)}}>
-                        <Text style={styles.title}>{name}</Text>
-                        <Text style={styles.subTile}>{position}</Text>
-                        <Text style={styles.content}>{content}</Text>
+                        <Text style={styles.title}>{title}</Text>
+                        <Text style={styles.content}>{origin}</Text>
                     </View>
                 </View>
           </Button>

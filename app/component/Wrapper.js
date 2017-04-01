@@ -11,7 +11,7 @@ export default class Wrapper extends Component {
 
     render () {
         return (
-          <View style={{flex: 1, justifyContent: 'flex-end', backgroundColor: 'red'}}>
+          <View style={{flex: 1, justifyContent: 'flex-end', backgroundColor: '#38f'}}>
               <StatusBar
                   backgroundColor="blue"
                   barStyle="light-content"
