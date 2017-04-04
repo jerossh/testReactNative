@@ -36,7 +36,7 @@ export default class DetailPage extends Component {
       let tintColor = 'white';
       let right = (
           <Button onPress={(state) => setParams({modalVisible: true})}>
-            <Icon name='ios-more-outline' size={40} color='white' style={{paddingRight: px2dp(10)}}/>
+            <Icon name='ios-more-outline' size={40} color='white' style={{paddingRight: px2dp(10), paddingTop: px2dp(3)}}/>
           </Button>
       )
       return { right, tintColor, style };

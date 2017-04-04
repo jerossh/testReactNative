@@ -3,23 +3,59 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, Platform } from 'react-native';
 // import Wrapper from './component/Wrapper';
+import Button from '../component/Button';
+import Icon from 'react-native-vector-icons/Ionicons';
+import px2dp from '../util';
 
 export default class Navigation extends Component {
-    
+
+  _renderHeader() {
+    return (
+      <View style={styles.header}>
+        <Text style={{color: 'white', fontSize: 18, lineHeight: 36}}>管理</Text>
+      </View>
+    )
+
+  }
+
+  _manageFeather() {
+      const manageData = [
+        {icon: 'ios-card-outline', name: '我的名片', count: 99},
+        {icon: 'ios-eye-outline', name: '我的广告', count: 99},
+        {icon: 'ios-book-outline', name: '营销文章', count: 99},
+        {icon: 'ios-bookmark-outline', name: '我的收藏', count: 99},
+      ];
+
+      return manageData.map((item, index) => {
+        return (
+        <Button key={index} onPress={()=> {}}>
+              <View style={{flexDirection: 'row'}}>
+                    <View style={{width: px2dp(60), paddingTop: 12, alignItems: 'center'}}>
+                      <Icon name={item.icon} color='#38f' size={30} />
+                    </View>
+                    <View  style={styles.featherZone}>
+                        <View>
+                          <Text style={{fontSize: px2dp(17), color: '#333'}}>{item.name}</Text>
+                        </View>
+                        <View>
+                          <Text  style={{color: '#888'}}>{item.count}</Text>
+                        </View>
+                    </View>
+                </View>
+        </Button>
+        )
+      })
+  }
+
     render() {
+
         return (
             <View style={styles.container}>
-                <Text style={styles.welcome}>
-                管理
-                </Text>
-                <Text style={styles.instructions}>
-                To get started, edit index.ios.js
-                </Text>
-                <Text style={styles.instructions}>
-                Double tap R on your keyboard to reload,{'\n'}
-                Shake or press menu button for dev menu
-                </Text>
-             </View>   
+                {this._renderHeader()}
+                <View style={{backgroundColor: 'white'}}>
+                {this._manageFeather()}
+                </View>
+            </View>   
         )
 
     }
@@ -27,19 +63,30 @@ export default class Navigation extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
+    // flex: 1,
+    // // justifyContent: 'center',
+    // alignItems: 'center',
+    // backgroundColor: 'white',
+    
+  },
+  header: {
+    paddingTop: 20,
+    backgroundColor: '#38f',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    height: 64
+    // flex: 1,
+    // flexDirection: 'column'
+
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  featherZone: {
+    flexDirection: 'row', 
+    width: px2dp(315), 
+    alignItems: 'center',
+    borderTopWidth: 1,
+    borderTopColor: '#eee',
+    justifyContent: 'space-between',
+    paddingVertical: 15,
+    paddingRight: 10
+}
+
 });

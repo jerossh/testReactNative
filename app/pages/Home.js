@@ -29,6 +29,7 @@ const signHeight = isIOS ? 30 : 10;
 const mainColor = '#38f';
 
 export default class Discover extends Component {
+  
     state = {
       scrollY: new Animated.Value(0),
       isRefreshing: false,
