@@ -33,7 +33,7 @@ export default class TabView extends Component {
     ["首页", "ios-home-outline", "HomePage", <HomePage {...this.props}/>],
     ["营销", "ios-compass-outline", "Discover", <Discover {...this.props}/>],
     ["管理", "ios-list-box-outline", "Order", <Order {...this.props}/>],
-    ["我", "ios-contact-outline", "My", <My {...this.props}/>]
+    ["账号", "ios-contact-outline", "My", <My {...this.props}/>]
   ]
 
   showTabBar = (time) => {

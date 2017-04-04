@@ -21,7 +21,7 @@ export default class Navigation extends Component {
   _manageFeather() {
       const manageData = [
         {icon: 'ios-card-outline', name: '我的名片', count: 99},
-        {icon: 'ios-eye-outline', name: '我的广告', count: 99},
+        {icon: 'ios-eye-outline', name: '广告设置', count: 99},
         {icon: 'ios-book-outline', name: '营销文章', count: 99},
         {icon: 'ios-bookmark-outline', name: '我的收藏', count: 99},
       ];
@@ -47,12 +47,16 @@ export default class Navigation extends Component {
       })
   }
 
+  _renderService () {
+    return ({})
+  }
+
     render() {
 
         return (
             <View style={styles.container}>
                 {this._renderHeader()}
-                <View style={{backgroundColor: 'white'}}>
+                <View style={{backgroundColor: 'white', marginTop: px2dp(5)}}>
                 {this._manageFeather()}
                 </View>
             </View>   
@@ -86,7 +90,7 @@ const styles = StyleSheet.create({
     borderTopColor: '#eee',
     justifyContent: 'space-between',
     paddingVertical: 15,
-    paddingRight: 10
+    paddingRight: 10,
 }
 
 });
