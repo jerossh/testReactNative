@@ -64,13 +64,27 @@ export default class DemoList extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    wrap: {paddingVertical: px2dp(10), borderTopWidth: 1, borderTopColor: '#eee',
-           paddingRight: 10
+  wrap: {
+    paddingVertical: px2dp(10), 
+    borderTopWidth: 1, 
+    borderTopColor: '#eee',
+    paddingRight: 10
   },
-    title: {fontSize: 16, color: '#333'},
-    subTile: {fontSize: 10, color: '#999'},
-    content: {fontSize: 11, color: '#999', paddingBottom: 3, lineHeight: 15},
-    ad: {fontSize: 11,color: '#f62', paddingHorizontal: 10, borderColor: '#f62', borderWidth: 1,
-         lineHeight: 15,borderRadius: 4
+  title: {fontSize: 16, color: '#333'},
+  subTile: {fontSize: 10, color: '#999'},
+  content: {
+    fontSize: 11, 
+    color: '#999', 
+    paddingBottom: 3, 
+    lineHeight: 15
+  },
+  ad: {
+    fontSize: 11,
+    color: '#f62', 
+    paddingHorizontal: 10, 
+    borderColor: '#f62', 
+    borderWidth: 1,
+    lineHeight: 15,
+    borderRadius: 4
 }
 });

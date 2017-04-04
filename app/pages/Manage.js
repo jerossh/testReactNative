@@ -7,6 +7,8 @@ import Button from '../component/Button';
 import Icon from 'react-native-vector-icons/Ionicons';
 import px2dp from '../util';
 
+const space = px2dp(10);
+
 export default class Navigation extends Component {
 
   _renderHeader() {
@@ -25,15 +27,21 @@ export default class Navigation extends Component {
         {icon: 'ios-book-outline', name: '营销文章', count: 99},
         {icon: 'ios-bookmark-outline', name: '我的收藏', count: 99},
       ];
+      const line = {
+            borderTopWidth: 1,
+            borderTopColor: '#eee',
+      }
 
       return manageData.map((item, index) => {
+        let moreStyle = line;
+        if (index === 0) moreStyle ={};
         return (
         <Button key={index} onPress={()=> {}}>
               <View style={{flexDirection: 'row'}}>
                     <View style={{width: px2dp(60), paddingTop: 12, alignItems: 'center'}}>
                       <Icon name={item.icon} color='#38f' size={30} />
                     </View>
-                    <View  style={styles.featherZone}>
+                    <View  style={[styles.featherZone, moreStyle]}>
                         <View>
                           <Text style={{fontSize: px2dp(17), color: '#333'}}>{item.name}</Text>
                         </View>
@@ -56,7 +64,7 @@ export default class Navigation extends Component {
         return (
             <View style={styles.container}>
                 {this._renderHeader()}
-                <View style={{backgroundColor: 'white', marginTop: px2dp(5)}}>
+                <View style={{backgroundColor: 'white', marginTop: space}}>
                 {this._manageFeather()}
                 </View>
             </View>   
@@ -86,8 +94,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row', 
     width: px2dp(315), 
     alignItems: 'center',
-    borderTopWidth: 1,
-    borderTopColor: '#eee',
     justifyContent: 'space-between',
     paddingVertical: 15,
     paddingRight: 10,

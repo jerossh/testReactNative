@@ -40,7 +40,7 @@ export default class cards extends Component {
 
 const styles = StyleSheet.create({
     wrap: {paddingVertical: px2dp(10), borderTopWidth: 1, borderTopColor: '#eee'},
-    title: {fontSize: 16, color: '#333'},
-    subTile: {fontSize: 10, color: '#999'},
-    content: {fontSize: 11, color: '#999', paddingBottom: 3, lineHeight: 15}
+    title: {fontSize: px2dp(16), color: '#333'},
+    subTile: {fontSize: px2dp(10), color: '#999'},
+    content: {fontSize: px2dp(11), color: '#999', paddingBottom: 3, lineHeight: 15}
 });

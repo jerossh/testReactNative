@@ -7,6 +7,7 @@ import Button from '../component/Button';
 import Icon from 'react-native-vector-icons/Ionicons';
 import px2dp from '../util';
 
+const space = px2dp(10);
 const countData = [
         {icon: 'ios-card-outline', name: '分享得积分', count: 99},
         {icon: 'ios-card-outline', name: '名片商城', count: 99},
@@ -52,21 +53,26 @@ export default class My extends Component {
   }
 
   _manageFeather(data) {
-      
+      const line = {
+            borderTopWidth: 1,
+            borderTopColor: '#eee',
+      }
 
       return data.map((item, index) => {
+        let moreStyle = line;
+        if (index === 0) moreStyle ={}
         return (
         <Button key={index} onPress={()=> {}}>
               <View style={{flexDirection: 'row'}}>
                     <View style={{width: px2dp(60), paddingTop: 12, alignItems: 'center'}}>
                       <Icon name={item.icon} color='#38f' size={30} />
                     </View>
-                    <View  style={styles.featherZone}>
+                    <View  style={[styles.featherZone, moreStyle]}>
                         <View>
                           <Text style={{fontSize: px2dp(17), color: '#333'}}>{item.name}</Text>
                         </View>
                         <View>
-                          <Text style={{color: '#aaa'}}>{'>'}</Text>
+                          <Text  style={{color: '#888'}}>{item.count}</Text>
                         </View>
                     </View>
                 </View>
@@ -84,17 +90,17 @@ export default class My extends Component {
         return (
             <View style={styles.container}>
                 {this._renderHeader()}
-                <View style={{backgroundColor: 'white', marginTop: px2dp(5)}}>
+                <View style={{backgroundColor: 'white', marginTop: space}}>
                 {this._renderAvatar()}
                 </View>
-                <View style={{backgroundColor: 'white', marginTop: px2dp(5)}}>
+                <View style={{backgroundColor: 'white', marginTop: space}}>
                 {this._manageFeather(countData)}
                 </View>
-                <View style={{backgroundColor: 'white', marginTop: px2dp(5)}}>
+                <View style={{backgroundColor: 'white', marginTop: space}}>
                 {this._manageFeather(aboutData)}
                 </View>
-                <View style={{backgroundColor: 'white', marginTop: px2dp(5), alignItems: 'center'}}>
-                   <Text style={{lineHeight: px2dp(40), fontSize: px2dp(17), color: '#f32'}}>退出登录</Text>
+                <View style={{backgroundColor: 'white', marginTop: space, alignItems: 'center'}}>
+                   <Text style={{lineHeight: px2dp(46), fontSize: px2dp(17), color: '#f32'}}>退出登录</Text>
                 </View>
             </View>   
         )
@@ -123,8 +129,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row', 
     width: px2dp(315), 
     alignItems: 'center',
-    borderTopWidth: 1,
-    borderTopColor: '#eee',
     justifyContent: 'space-between',
     paddingVertical: 15,
     paddingRight: 10,

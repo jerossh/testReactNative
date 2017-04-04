@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     // alignItems: 'center',
-    backgroundColor: '#f1f3f9',
+    backgroundColor: '#eee',
     position: 'relative'
   },
   header: {
